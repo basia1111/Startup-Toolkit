@@ -6,7 +6,7 @@ import DesktopMenu from './DesktopMenu';
 
 const Header = () => {
   return (
-    <nav className="nav flex w-full items-center justify-between p-4 lg:p-8">
+    <nav className="nav flex w-full items-center justify-between p-4">
       <Logo />
       <div className="menu-wrapper relative items-center md:flex md:flex-row">
         <HamburgerMenu />

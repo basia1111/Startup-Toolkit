@@ -2,8 +2,8 @@
 
 import React from 'react';
 import connectDB from '@lib/db';
-import { User } from '@models/User';
-import bcrypt from 'bcrypt';
+import User from '@models/User';
+import bcrypt from 'bcryptjs';
 
 export const registerCredentials = async (name: string, email: string, password: string) => {
   await connectDB();
@@ -17,8 +17,8 @@ export const registerCredentials = async (name: string, email: string, password:
     return (
       <div>
         <p className="text-red font-Inter">
-          It looks like you've already registered using Google Sign-In. For security reasons, you'll
-          need to use the "Sign in with Google" button to access your account.
+          It looks like you&apos;ve already registered using Google Sign-In. For security reasons,
+          you&apos;ll need to use the &quot;Sign in with Google&quot; button to access your account.
         </p>
         <p className="mb-3">
           <a href="/login" className="underline">

@@ -39,9 +39,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async redirect({ baseUrl }) {
-      return `${baseUrl}/profile`;
+      return `${baseUrl}/profile/me`;
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, profile, trigger, session }) {
       if (account?.provider === 'google') {
         const { email, name, picture } = profile as any;
 
@@ -53,6 +53,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.name = user.name;
         token.email = user.email;
         token.image = user.image;
+      }
+      if (trigger === 'update') {
+        token.image = session.image;
       }
       return token;
     },

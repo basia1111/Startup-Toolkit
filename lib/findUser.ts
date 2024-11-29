@@ -1,7 +1,7 @@
 'use server';
 
 import connectDB from '@lib/db';
-import { User } from '@models/User';
+import User from '@models/User';
 
 export const findUser = async (email: string) => {
   await connectDB();

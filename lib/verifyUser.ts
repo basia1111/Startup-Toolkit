@@ -1,5 +1,5 @@
-import { User } from '../models/User';
-import bcrypt from 'bcrypt';
+import User from '../models/User';
+import bcrypt from 'bcryptjs';
 import connectDB from '@lib/db';
 
 export const verifyUser = async (email: string, password: string) => {

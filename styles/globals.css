@@ -5,31 +5,19 @@
 @tailwind utilities;
 
 .gradient-bg {
-  /*background-image: radial-gradient(49% 81% at 45% 47%, #ffe20345 0%, #073aff00 100%),
+  background-image: radial-gradient(49% 81% at 45% 47%, #ffe20345 0%, #073aff00 100%),
     radial-gradient(113% 91% at 17% -2%, #ff5a00ff 1%, #ff000000 99%),
     radial-gradient(142% 91% at 83% 7%, #ffdb00ff 1%, #ff000000 99%),
     radial-gradient(142% 91% at -6% 74%, #ff3600 1%, #ff000000 99%),
-    radial-gradient(142% 91% at 111% 84%, #ff7000ff 0%, #ff0000ff 100%);*/
-  background: radial-gradient(
-      circle at 45% 47%,
-      rgba(255, 226, 3, 0.25) 0%,
-      rgba(7, 58, 255, 0.05) 100%
-    ),
-    radial-gradient(circle at 17% -2%, rgb(255, 94, 0) 1%, rgba(255, 119, 44, 0.05) 99%),
-    radial-gradient(ellipse at 83% 7%, rgb(235, 74, 193) 1%, rgba(238, 0, 255, 0.05) 99%),
-    radial-gradient(circle at -6% 74%, rgb(255, 114, 48) 1%, rgba(255, 107, 48, 0.05) 99%),
-    radial-gradient(ellipse at 111% 84%, rgb(139, 33, 195) 0%, rgba(156, 0, 255, 0.1) 100%);
-
-  background-blend-mode: soft-light;
-  box-shadow: rgba(255, 255, 255, 0) 0px 2px 8px 0px;
-  transition: all 0.3s ease-in-out;
+    radial-gradient(142% 91% at 111% 84%, #ff7000ff 0%, #ff0000ff 100%);
+  /*background: linear-gradient(135deg, #ff5722, #ff9800);*/
 }
 
 .gradient-bg:hover {
-  box-shadow: #bd095bba 0px 0px 12px;
+  box-shadow: #ffa620ba 0px 0px 4px;
 }
 .glow-button {
-  box-shadow: rgba(255, 255, 255, 0) 0px 0px 16px;
+  box-shadow: rgba(255, 255, 255, 0) 0px 0px 12px;
   transition: all 0.3s ease-in-out;
 }
 

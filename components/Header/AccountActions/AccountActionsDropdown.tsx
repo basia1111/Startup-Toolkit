@@ -70,8 +70,10 @@ const AccountActionsDropdown = () => {
             exit="exit"
             className="absolute right-2 top-10 flex w-auto flex-col gap-2 rounded bg-white p-4 pr-20 text-left text-black shadow-lg"
           >
-            <Link href="/profile">Profile</Link>
-            <p className="cursor-pointer" onClick={handleLogout}>
+            <Link href="/profile/me" className="hover:text-orange">
+              Profile
+            </Link>
+            <p className="hover:text-orange cursor-pointer" onClick={handleLogout}>
               Logout
             </p>
           </motion.div>
