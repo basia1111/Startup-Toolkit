@@ -8,7 +8,14 @@ const UserSchema = new mongoose.Schema({
   image: { type: String },
   coverImage: { type: String },
   professionalTitle: { type: String },
-  Location: { type: String },
+  city: { type: String },
+  location: { type: String },
+  socialMedia: {
+    linkedin: { type: String },
+    github: { type: String },
+    twitter: { type: String },
+  },
+  about: { type: String },
 });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);

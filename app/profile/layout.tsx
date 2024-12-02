@@ -7,8 +7,10 @@ type ProfileLayoutProps = {
 
 const ProfileLayout = ({ children }: ProfileLayoutProps) => {
   return (
-    <div className="font-Inter mx-auto w-full px-4">
-      <div className="bg-softWhite flex justify-center rounded-2xl p-4 lg:p-10">{children}</div>
+    <div className="font-Inter relative mx-auto w-full px-4">
+      <div className="user-profile-wrapper bg-softWhite flex justify-center rounded-2xl p-4 lg:p-10">
+        {children}
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
   }
 
   const formData = await request.formData();
-  const file = formData.get('image') as File;
+  const file = formData.get('cover') as File;
 
   if (!file) {
     return NextResponse.json({ message: 'No file uploaded' }, { status: 400 });
@@ -26,21 +26,17 @@ export async function POST(request: NextRequest) {
     await writeFile(path, buffer);
 
     const uploadResponse = await cloudinary.uploader.upload(path, {
-      folder: 'profile_pictures',
+      folder: 'cover_pictures',
       public_id: session.user.id,
     });
 
-    const updatedUser = await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       session.user.id,
-      { image: uploadResponse.secure_url },
+      { coverImage: uploadResponse.secure_url },
       { new: true },
     );
 
-    return NextResponse.json({
-      message: 'Profile picture updated',
-      user: updatedUser,
-      image: uploadResponse.secure_url,
-    });
+    return NextResponse.json({ status: 200 });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(

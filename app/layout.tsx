@@ -3,6 +3,8 @@ import React from 'react';
 import { ReactNode } from 'react';
 import Header from '@components/Header/Header';
 import Provider from '@components/Provider';
+import { ModalContextProvider } from '@contexts/ModalContext';
+import Modal from '@components/Modal';
 
 export const metadata = {
   title: 'Startup Toolkit',
@@ -19,10 +21,13 @@ const Root = ({ children }: RootProps) => {
     <html lang="en">
       <body>
         <Provider>
-          <main className="app-wrapper flex min-h-screen w-full flex-col items-center bg-black">
-            <Header />
-            {children}
-          </main>
+          <ModalContextProvider>
+            <main className="app-wrapper relative flex min-h-screen w-full flex-col items-center bg-black">
+              <Header />
+              {children}
+              <Modal />
+            </main>
+          </ModalContextProvider>
         </Provider>
       </body>
     </html>

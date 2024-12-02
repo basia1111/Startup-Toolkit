@@ -1,22 +1,23 @@
 import React from 'react';
 import { Session } from 'next-auth';
-import Achievements from './LeftSidebarComponents/Achievements';
 import SocialLinks from './LeftSidebarComponents/SocialLinks';
 import ProfileImage from './LeftSidebarComponents/ProfileImage';
 import UserDetails from './LeftSidebarComponents/UserDetails';
+import { User } from '@types';
 
-type LeftSidebar = {
+type LeftSidebarProps = {
   session: Session;
+  user: User;
+  updateUser: () => void;
 };
 
-const LeftSidebar = ({ session }: LeftSidebar) => {
+const LeftSidebar = ({ session, user, updateUser }: LeftSidebarProps) => {
   return (
     <div className="md:col-span-1">
       <div className="sticky top-8 flex flex-col items-center rounded-xl bg-white p-6 shadow-md">
         <ProfileImage session={session} />
-        <UserDetails session={session} />
-        <SocialLinks />
-        <Achievements />
+        <UserDetails user={user} updateUser={updateUser} />
+        <SocialLinks user={user} />
       </div>
     </div>
   );

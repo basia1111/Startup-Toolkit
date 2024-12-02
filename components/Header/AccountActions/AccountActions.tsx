@@ -15,7 +15,7 @@ const AccountActions = async () => {
               alt="profile picture"
               width={30}
               height={30}
-              className="rounded-full object-cover"
+              className="h-8 w-8 rounded-full object-cover"
             />
           </a>
           <AccountActionsDropdown />
