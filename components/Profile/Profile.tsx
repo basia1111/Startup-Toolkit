@@ -5,6 +5,7 @@ import LeftSidebar from './LeftSidebar';
 import Cover from './Cover';
 import About from './About';
 import Projects from './Projects';
+import CreateProject from '../Project/CreateProject';
 import { Session } from 'next-auth';
 import { User } from '@types';
 
@@ -44,6 +45,7 @@ const Profile = ({ session, user: backendUser }: ProfileProps) => {
         <Cover user={user} updateUser={fetchUser} />
         <About user={user} updateUser={fetchUser} />
         <Projects />
+        <CreateProject />
       </div>
     </div>
   );
