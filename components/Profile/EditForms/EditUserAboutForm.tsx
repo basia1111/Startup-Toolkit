@@ -20,7 +20,7 @@ const EditUserAboutForm = ({ closeModal }: UserDetailsProps) => {
     setMessage('');
 
     try {
-      const response = await fetch('/api/edit/about', {
+      const response = await fetch('/api/user/edit/about', {
         method: 'PUT',
         body: formData,
       });

@@ -45,7 +45,7 @@ const EditProfileImageForm = ({ setIsEditing }: EditProfileImageFormType) => {
     formData.append('image', selectedFile);
 
     try {
-      const response = await fetch('/api/upload/image', {
+      const response = await fetch('/api/user/upload/image', {
         method: 'POST',
         body: formData,
       });

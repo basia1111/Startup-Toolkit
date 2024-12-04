@@ -21,7 +21,7 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
     setMessage('');
 
     try {
-      const response = await fetch('/api/edit/bio', {
+      const response = await fetch('/api/user/edit/bio', {
         method: 'PUT',
         body: formData,
       });

@@ -43,7 +43,7 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
     formData.append('cover', selectedFile);
 
     try {
-      const response = await fetch('/api/upload/cover', {
+      const response = await fetch('/api/user/upload/cover', {
         method: 'POST',
         body: formData,
       });
