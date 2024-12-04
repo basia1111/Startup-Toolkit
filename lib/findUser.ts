@@ -13,5 +13,5 @@ export const findUser = async (email: string) => {
   const user = await User.findOne({ email });
   if (!user) return null;
 
-  return { ...user.toObject(), id: user._id.toString() };
+  return { ...user.toObject(), socialMedia: { ...user.socialMedia }, id: user._id.toString() };
 };

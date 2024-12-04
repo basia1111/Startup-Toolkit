@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { ClipLoader } from 'react-spinners';
 import Image from 'next/image';
-import { Session } from 'next-auth';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import { useSession } from 'next-auth/react';
+import { UserContext } from '@contexts/UserContext';
 
 type EditProfileImageFormType = {
-  update: (data: { image: string }) => Promise<Session | null>;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-  session: Session | null;
 };
 
-const EditProfileImageForm = ({ update, setIsEditing, session }: EditProfileImageFormType) => {
+const EditProfileImageForm = ({ setIsEditing }: EditProfileImageFormType) => {
   const [loading, setLoading] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const { update } = useSession();
+  const { user, updateUser } = useContext(UserContext)!;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -30,18 +32,17 @@ const EditProfileImageForm = ({ update, setIsEditing, session }: EditProfileImag
 
   const handleUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const fileInput = form.elements.namedItem('image') as HTMLInputElement;
     setLoading(true);
+    setMessage(null);
 
-    if (!fileInput.files?.[0]) {
+    if (!selectedFile) {
       setMessage('Please select an image');
       setLoading(false);
       return;
     }
 
     const formData = new FormData();
-    formData.append('image', fileInput.files[0]);
+    formData.append('image', selectedFile);
 
     try {
       const response = await fetch('/api/upload/image', {
@@ -51,13 +52,18 @@ const EditProfileImageForm = ({ update, setIsEditing, session }: EditProfileImag
 
       const data = await response.json();
 
-      await update({ image: data.image });
-      setLoading(false);
-      setIsEditing(false);
-      setMessage('');
-      setPreviewImage(null);
-
-      setMessage(data.message);
+      if (response.ok) {
+        updateUser(data.user);
+        await update({ image: data.image });
+        const refreshedSession = await fetch('/api/auth/session');
+        await refreshedSession.json();
+        setLoading(false);
+        setIsEditing(false);
+        setMessage('');
+        setPreviewImage(null);
+      } else {
+        setMessage(data.message);
+      }
     } catch {
       setMessage('Upload failed');
       setLoading(false);
@@ -85,7 +91,7 @@ const EditProfileImageForm = ({ update, setIsEditing, session }: EditProfileImag
           </div>
         ) : (
           <Image
-            src={previewImage || session?.user?.image || '/images/avatar-placeholder.png'}
+            src={previewImage || user?.image || '/images/avatar-placeholder.png'}
             alt="profile picture"
             width={192}
             height={192}

@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
   if (!file) {
     return NextResponse.json({ message: 'No file uploaded' }, { status: 400 });
   }
+  console.log(file);
 
   try {
     const bytes = await file.arrayBuffer();
@@ -30,13 +31,16 @@ export async function POST(request: NextRequest) {
       public_id: session.user.id,
     });
 
-    await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       session.user.id,
       { image: uploadResponse.secure_url },
       { new: true },
     );
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json(
+      { image: uploadResponse.secure_url, user: updatedUser },
+      { status: 200 },
+    );
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(

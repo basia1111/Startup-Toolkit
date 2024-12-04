@@ -22,7 +22,7 @@ export async function PUT(request: NextRequest) {
   }
 
   try {
-    await User.findByIdAndUpdate(
+    const updatedtUser = await User.findByIdAndUpdate(
       session.user.id,
       {
         name: name,
@@ -39,7 +39,7 @@ export async function PUT(request: NextRequest) {
       },
     );
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ user: updatedtUser }, { status: 200 });
   } catch (error) {
     console.error('Update Error:', error);
     return NextResponse.json(

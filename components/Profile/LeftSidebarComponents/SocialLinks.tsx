@@ -1,11 +1,10 @@
-import React from 'react';
+import { UserContext } from '@contexts/UserContext';
+import React, { useContext } from 'react';
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
-import { User } from '@types';
-type SocialLinksProps = {
-  user: User;
-};
 
-const SocialLinks = ({ user }: SocialLinksProps) => {
+const SocialLinks = () => {
+  const { user } = useContext(UserContext)!;
+
   return (
     <div className="user-profile-social-links mb-6 flex space-x-4">
       {user?.socialmedia?.twitter && (

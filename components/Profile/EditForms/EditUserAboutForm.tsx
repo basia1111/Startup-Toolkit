@@ -1,17 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Input from './Input';
-import { User } from '@types';
+import { UserContext } from '@contexts/UserContext';
 
 type UserDetailsProps = {
-  updateUser: () => void;
   closeModal: () => void;
-  user: User;
 };
 
-const EditUserAboutForm = ({ updateUser, closeModal, user }: UserDetailsProps) => {
+const EditUserAboutForm = ({ closeModal }: UserDetailsProps) => {
   const [message, setMessage] = useState('');
+  const { user, updateUser } = useContext(UserContext)!;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +28,7 @@ const EditUserAboutForm = ({ updateUser, closeModal, user }: UserDetailsProps) =
       const data = await response.json();
 
       if (response.ok) {
-        updateUser();
+        updateUser(data.user);
         closeModal();
       } else {
         setMessage(data?.message || '');
@@ -56,7 +55,7 @@ const EditUserAboutForm = ({ updateUser, closeModal, user }: UserDetailsProps) =
             name="about"
             type="textarea"
             placeholder="Write something about yourself..."
-            defaultValue={user.about || ''}
+            defaultValue={user?.about || ''}
           />
           <button
             type="submit"

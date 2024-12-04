@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaPaintBrush } from 'react-icons/fa';
 import EditProfileCoverForm from './EditForms/EditProfileCoverForm';
-import { User } from '@types';
+import { UserContext } from '@contexts/UserContext';
 
-type CoverProps = {
-  user: User | null;
-  updateUser: () => void;
-};
-
-const Cover = ({ user, updateUser }: CoverProps) => {
+const Cover = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const { user } = useContext(UserContext)!;
 
   return (
     <div>
@@ -21,7 +17,6 @@ const Cover = ({ user, updateUser }: CoverProps) => {
           />
           <div
             onClick={() => {
-              console.log('click');
               setIsEditing(true);
             }}
             className="bg-softWhite absolute bottom-6 right-8 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-opacity-50 p-2 shadow-md backdrop-blur-sm hover:bg-opacity-70"
@@ -30,7 +25,7 @@ const Cover = ({ user, updateUser }: CoverProps) => {
           </div>
         </div>
       ) : (
-        <EditProfileCoverForm updateUser={updateUser} setIsEditing={setIsEditing} user={user} />
+        <EditProfileCoverForm setIsEditing={setIsEditing} />
       )}
     </div>
   );

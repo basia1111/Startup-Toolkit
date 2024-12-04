@@ -1,18 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Input from './Input';
 import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
-import { User } from '@types';
+import { UserContext } from '@contexts/UserContext';
 
 type UserDetailsProps = {
-  updateUser: () => void;
   closeModal: () => void;
-  user: User;
 };
 
-const EditUserDataForm = ({ updateUser, closeModal, user }: UserDetailsProps) => {
+const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
   const [message, setMessage] = useState('');
+  const { user, updateUser } = useContext(UserContext)!;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +29,7 @@ const EditUserDataForm = ({ updateUser, closeModal, user }: UserDetailsProps) =>
       const data = await response.json();
 
       if (response.ok) {
-        updateUser();
+        updateUser(data.user);
         closeModal();
       } else {
         setMessage(data?.message || '');
@@ -53,13 +52,13 @@ const EditUserDataForm = ({ updateUser, closeModal, user }: UserDetailsProps) =>
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-8">
         <div className="space-y-4">
           <h3 className="text-gray text-lg font-semibold">Personal Information</h3>
-          <Input name="name" placeholder="Full Name" defaultValue={user.name || ''} />
+          <Input name="name" placeholder="Full Name" defaultValue={user?.name || ''} />
           <Input
             name="professionalTitle"
             placeholder="Professional Title"
-            defaultValue={user.professionalTitle || ''}
+            defaultValue={user?.professionalTitle || ''}
           />
-          <Input name="city" placeholder="Warsaw, Poland" defaultValue={user.city || ''} />
+          <Input name="city" placeholder="Warsaw, Poland" defaultValue={user?.city || ''} />
         </div>
 
         <div className="space-y-4">

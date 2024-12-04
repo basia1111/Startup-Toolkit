@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import { UserContext } from '@contexts/UserContext';
+import React, { useState, useContext } from 'react';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import { ClipLoader } from 'react-spinners';
-import { User } from '@types';
 
 type EditProfileCoverFormProps = {
-  updateUser: () => void;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-  user: User | null;
 };
 
-const EditProfileCoverForm = ({ updateUser, setIsEditing, user }: EditProfileCoverFormProps) => {
+const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
+  const [loading, setLoading] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const { user, updateUser } = useContext(UserContext)!;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -47,10 +47,11 @@ const EditProfileCoverForm = ({ updateUser, setIsEditing, user }: EditProfileCov
         method: 'POST',
         body: formData,
       });
+      console.log(formData);
       const data = await response.json();
 
       if (response.ok) {
-        updateUser();
+        updateUser(data.user);
         setIsEditing(false);
       } else {
         setMessage(data.message);

@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import Header from '@components/Header/Header';
 import Provider from '@components/Provider';
 import { ModalContextProvider } from '@contexts/ModalContext';
+import { UserContextProvider } from '@contexts/UserContext';
 import Modal from '@components/Modal';
 
 export const metadata = {
@@ -20,15 +21,17 @@ const Root = ({ children }: RootProps) => {
   return (
     <html lang="en">
       <body>
-        <Provider>
-          <ModalContextProvider>
-            <main className="app-wrapper relative flex min-h-screen w-full flex-col items-center bg-black">
-              <Header />
-              {children}
-              <Modal />
-            </main>
-          </ModalContextProvider>
-        </Provider>
+        <UserContextProvider>
+          <Provider>
+            <ModalContextProvider>
+              <main className="app-wrapper relative flex min-h-screen w-full flex-col items-center bg-black">
+                <Header />
+                {children}
+                <Modal />
+              </main>
+            </ModalContextProvider>
+          </Provider>
+        </UserContextProvider>
       </body>
     </html>
   );

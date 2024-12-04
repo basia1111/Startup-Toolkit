@@ -1,20 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import { FaCamera } from 'react-icons/fa';
-import { useSession } from 'next-auth/react';
-import { Session } from 'next-auth';
 import EditProfileImageForm from '../EditForms/EditProfileImageForm';
+import { UserContext } from '@contexts/UserContext';
 
-type ProfileImage = {
-  session: Session;
-};
-
-const ProfileImage = ({ session: backendSession }: ProfileImage) => {
+const ProfileImage = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const { data: session, update, status } = useSession();
-  const currentSession = status === 'loading' ? backendSession : session;
+
+  const { user } = useContext(UserContext)!;
 
   return (
     <div className="relative flex flex-col items-center">
@@ -22,7 +17,7 @@ const ProfileImage = ({ session: backendSession }: ProfileImage) => {
         <>
           <div className="border-softWhite relative mb-6 h-48 w-48 overflow-hidden rounded-full border-8 shadow-lg">
             <Image
-              src={currentSession?.user?.image || '/images/avatar-placeholder.png'}
+              src={user?.image || '/images/avatar-placeholder.png'}
               alt="profile picture"
               width={192}
               height={192}
@@ -41,7 +36,7 @@ const ProfileImage = ({ session: backendSession }: ProfileImage) => {
           </div>
         </>
       ) : (
-        <EditProfileImageForm update={update} setIsEditing={setIsEditing} session={session} />
+        <EditProfileImageForm setIsEditing={setIsEditing} />
       )}
     </div>
   );

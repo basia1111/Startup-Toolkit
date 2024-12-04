@@ -4,12 +4,14 @@ import { auth } from '@/auth';
 import User from '@/models/User';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
+import connectDB from '@lib/db';
 
 export async function POST(request: NextRequest) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
+  await connectDB();
 
   const formData = await request.formData();
   const file = formData.get('cover') as File;
@@ -30,13 +32,13 @@ export async function POST(request: NextRequest) {
       public_id: session.user.id,
     });
 
-    await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       session.user.id,
       { coverImage: uploadResponse.secure_url },
       { new: true },
     );
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ user: updatedUser }, { status: 200 });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(

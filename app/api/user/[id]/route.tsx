@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
       professionalTitle: user.professionalTitle,
       city: user.city,
       about: user.about,
-      socialmedia: user.socialmedia ? { ...user.socialmedia } : null,
+      socialMedia: user.socialMedia ? { ...user.socialMedia } : null,
       coverImage: user.coverImage,
     };
     return NextResponse.json({ user: serializedUser });
