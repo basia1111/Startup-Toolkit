@@ -2,14 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import cloudinary from '@utils/claudinary';
 import { auth } from '@/auth';
 import User from '@/models/User';
-import { writeFile } from 'fs/promises';
+import { unlink, writeFile } from 'fs/promises';
 import { join } from 'path';
+import connectDB from '@lib/db';
 
 export async function POST(request: NextRequest) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
+
+  await connectDB();
 
   const formData = await request.formData();
   const file = formData.get('image') as File;
@@ -36,6 +39,8 @@ export async function POST(request: NextRequest) {
       { image: uploadResponse.secure_url },
       { new: true },
     );
+
+    await unlink(path);
 
     return NextResponse.json(
       { image: uploadResponse.secure_url, user: updatedUser },

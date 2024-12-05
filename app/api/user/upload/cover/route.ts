@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import cloudinary from '@utils/claudinary';
 import { auth } from '@/auth';
 import User from '@/models/User';
-import { writeFile } from 'fs/promises';
+import { writeFile, unlink } from 'fs/promises';
 import { join } from 'path';
 import connectDB from '@lib/db';
 
@@ -37,6 +37,8 @@ export async function POST(request: NextRequest) {
       { coverImage: uploadResponse.secure_url },
       { new: true },
     );
+
+    await unlink(path);
 
     return NextResponse.json({ user: updatedUser }, { status: 200 });
   } catch (error) {

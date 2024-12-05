@@ -3,7 +3,7 @@ import connectDB from '@lib/db';
 import Project from '@models/Project';
 import cloudinary from '@utils/claudinary';
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile } from 'fs/promises';
+import { unlink, writeFile } from 'fs/promises';
 import { join } from 'path';
 
 export async function POST(request: NextRequest) {
@@ -51,6 +51,8 @@ export async function POST(request: NextRequest) {
       });
 
       await newProject.save();
+      await unlink(path);
+
       return NextResponse.json({ newProject });
     } else {
       const newProject = new Project({
@@ -61,6 +63,7 @@ export async function POST(request: NextRequest) {
       });
 
       await newProject.save();
+
       return NextResponse.json({ newProject });
     }
   } catch (error) {

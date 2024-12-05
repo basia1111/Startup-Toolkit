@@ -3,13 +3,14 @@ import User from '@models/User';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  await connectDB();
   const url = new URL(request.url);
   const id = url.pathname.split('/').pop();
 
   if (!id) {
     return NextResponse.json({ message: 'ID is required' });
   }
+
+  await connectDB();
 
   try {
     const user = await User.findById(id);

@@ -1,4 +1,5 @@
 import { auth } from '@auth';
+import connectDB from '@lib/db';
 import User from '@models/User';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -9,6 +10,8 @@ export async function PUT(request: NextRequest) {
   if (!session?.user?.id) {
     return NextResponse.json({ message: 'unauthorised' }, { status: 401 });
   }
+
+  await connectDB();
 
   const about = formData.get('about') as string;
 
