@@ -23,12 +23,12 @@ const AccountActions = async () => {
       ) : (
         <>
           <Link
-            className="hover:text-orange rounded-lg border-[1px] border-white px-4 py-1"
+            className="hover:text-accent rounded-lg border-[1px] border-white px-4 py-1"
             href="/login"
           >
             Sign in
           </Link>
-          <Link className="hover:text-orange ml-4 rounded-lg px-4 py-1" href="/register">
+          <Link className="hover:text-accent ml-4 rounded-lg px-4 py-1" href="/register">
             Sign up
           </Link>
         </>

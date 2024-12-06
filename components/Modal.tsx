@@ -36,11 +36,11 @@ const Modal = () => {
           initial="initial"
           animate="open"
           exit="close"
-          className="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-6"
+          className="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 md:p-6"
         >
           <motion.div
             variants={modalVariants}
-            className="modal-content-wrapper relative max-w-2xl rounded-xl bg-white p-6 shadow-xl"
+            className="modal-content-wrapper relative w-full max-w-2xl rounded-xl bg-white p-4 shadow-xl md:min-w-[40%] md:p-6"
           >
             <IoMdClose
               onClick={closeModal}

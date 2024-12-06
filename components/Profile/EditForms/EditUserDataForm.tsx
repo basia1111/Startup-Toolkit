@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react';
 import Input from './Input';
 import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { UserContext } from '@contexts/UserContext';
+import { ClipLoader } from 'react-spinners';
 
 type UserDetailsProps = {
   closeModal: () => void;
@@ -11,6 +12,7 @@ type UserDetailsProps = {
 
 const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const { user, updateUser } = useContext(UserContext)!;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,13 +23,14 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
     setMessage('');
 
     try {
+      setLoading(true);
       const response = await fetch('/api/user/edit/bio', {
         method: 'PUT',
         body: formData,
       });
 
       const data = await response.json();
-
+      setLoading(false);
       if (response.ok) {
         updateUser(data.user);
         closeModal();
@@ -49,7 +52,7 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-8">
+      <form onSubmit={handleSubmit} className="gap-8 md:grid md:grid-cols-2">
         <div className="space-y-4">
           <h3 className="text-gray text-lg font-semibold">Personal Information</h3>
           <Input name="name" placeholder="Full Name" defaultValue={user?.name || ''} />
@@ -65,7 +68,7 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
           <h3 className="text-gray text-lg font-semibold">Social Media</h3>
           <div className="flex gap-4">
             <div className="flex flex-col items-center">
-              <FaTwitter className="text-mediumGray mb-2 text-3xl" />
+              <FaTwitter className="mb-2 text-3xl text-neutral-300" />
               <Input
                 name="twitter"
                 placeholder="https://twitter.com/..."
@@ -73,7 +76,7 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <FaLinkedin className="text-mediumGray mb-2 text-3xl" />
+              <FaLinkedin className="mb-2 text-3xl text-neutral-300" />
               <Input
                 name="linkedIn"
                 placeholder="https://linkedin.com/in/..."
@@ -81,7 +84,7 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <FaGithub className="text-mediumGray mb-2 text-3xl" />
+              <FaGithub className="mb-2 text-3xl text-neutral-300" />
               <Input
                 name="github"
                 placeholder="https://github.com/..."
@@ -94,9 +97,16 @@ const EditUserDataForm = ({ closeModal }: UserDetailsProps) => {
         <div className="col-span-2 mt-6">
           <button
             type="submit"
-            className="gradient-bg w-full transform rounded-md px-2 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            disabled={loading}
+            className="bg-accent hover:bg-accentHover disabled:bg-accentDisabled w-full transform rounded-md px-2 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
           >
-            Update Profile
+            {loading ? (
+              <ClipLoader size={20} color="#ffffff" />
+            ) : (
+              <>
+                <span>Update Profile</span>
+              </>
+            )}
           </button>
         </div>
       </form>

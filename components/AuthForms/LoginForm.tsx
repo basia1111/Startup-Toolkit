@@ -45,7 +45,7 @@ const LoginForm = () => {
         <PasswordInput />
         <button
           type="submit"
-          className="gradient-bg w-full rounded-md bg-gray-800 px-2 py-3 text-white"
+          className="bg-accent w-full rounded-md bg-gray-800 px-2 py-3 text-white"
         >
           Sign in
         </button>

@@ -6,14 +6,14 @@ const SocialLinks = () => {
   const { user } = useContext(UserContext)!;
 
   return (
-    <div className="user-profile-social-links mb-6 flex space-x-4">
+    <div className="user-profile-social-links mb-6 flex justify-end space-x-4 py-4 md:pt-[120px]">
       {user?.socialmedia?.twitter && (
         <a
           key="twitter"
           href={user.socialmedia.twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 transition-colors hover:text-blue-600"
+          className="text-gray hover:text-accent transition-colors"
         >
           <FaTwitter size={24} />
         </a>
@@ -24,7 +24,7 @@ const SocialLinks = () => {
           href={user.socialmedia.linkedIn}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 transition-colors hover:text-blue-600"
+          className="text-gray hover:text-accent transition-colors"
         >
           <FaLinkedin size={24} />
         </a>
@@ -35,7 +35,7 @@ const SocialLinks = () => {
           href={user.socialmedia.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 transition-colors hover:text-blue-600"
+          className="text-gray hover:text-accent transition-colors"
         >
           <FaGithub size={24} />
         </a>

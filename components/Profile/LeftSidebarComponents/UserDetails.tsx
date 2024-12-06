@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useContext } from 'react';
-import { FaPen } from 'react-icons/fa';
-import { SlLocationPin } from 'react-icons/sl';
+import { FaPencilAlt } from 'react-icons/fa';
+import { FaLocationDot } from 'react-icons/fa6';
 import { ModalContext } from '@contexts/ModalContext';
 import EditUserDataForm from '../EditForms/EditUserDataForm';
 import { UserContext } from '@contexts/UserContext';
@@ -16,22 +16,22 @@ const UserDetails = () => {
   }
 
   return (
-    <>
-      <h1 className="mb-4 flex items-center gap-2 pl-2 text-2xl font-bold text-gray-900">
+    <div className="flex flex-col items-center pt-6 md:items-start">
+      <h1 className="mb-1 flex items-center gap-2 text-xl font-bold text-gray-900 md:text-2xl">
         {user.name}
-        <FaPen
+        <FaPencilAlt
           onClick={() => openModal(<EditUserDataForm closeModal={closeModal} />)}
           size={12}
-          className="text-mediumGray hover:text-gray cursor-pointer transition-all"
+          className="cursor-pointer text-neutral-400 transition-all hover:text-neutral-600"
         />
       </h1>
-      <p className="text-mediumGray mb-1 pl-2 text-center">{user.professionalTitle}</p>
+      <p className="text-gray mb-4 text-center text-sm md:text-base">{user.professionalTitle}</p>
 
-      <div className="text-mediumGray mb-6 flex items-center text-sm">
-        <SlLocationPin className="text-orange mr-2" />
+      <div className="mb-6 flex items-center text-sm text-neutral-400">
+        <FaLocationDot className="mr-1 text-neutral-400" />
         <span>{user.city}</span>
       </div>
-    </>
+    </div>
   );
 };
 

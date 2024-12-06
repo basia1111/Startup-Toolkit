@@ -72,22 +72,10 @@ const EditProfileImageForm = ({ setIsEditing }: EditProfileImageFormType) => {
 
   return (
     <>
-      <div
-        onClick={() => {
-          setIsEditing(false);
-          setPreviewImage(null);
-        }}
-        className="bg-softWhite font-Inter absolute right-2 top-2 z-50 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-800 p-2 shadow-md hover:bg-zinc-200"
-      >
-        <IoMdClose
-          className="text-gray absolute cursor-pointer rounded-full bg-gray-800 p-1 hover:bg-gray-700"
-          size={28}
-        />
-      </div>
-      <div className="border-softWhite relative z-40 mb-6 h-48 w-48 overflow-hidden rounded-full border-8 shadow-lg">
+      <div className="border-softWhite mb-6 h-28 w-28 overflow-hidden rounded-full border-4 md:h-32 md:w-32 md:border-8">
         {loading ? (
-          <div className="flex h-full items-center justify-center text-gray-500">
-            <ClipLoader color="#fa9e00" size={40} />
+          <div className="flex h-full items-center justify-center bg-neutral-100">
+            <ClipLoader color="#737373" size={40} />
           </div>
         ) : (
           <Image
@@ -107,12 +95,24 @@ const EditProfileImageForm = ({ setIsEditing }: EditProfileImageFormType) => {
       )}
       <form
         onSubmit={handleUpload}
-        className="border-lightGray mb-4 w-full min-w-80 rounded-2xl border bg-white p-2 shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800"
+        className="relative mb-4 w-full min-w-80 rounded-2xl border border-neutral-200 bg-white p-2 pt-8 shadow-sm transition-all duration-300 hover:shadow-xl"
       >
-        <div className="flex flex-col items-center space-y-4">
+        <div
+          onClick={() => {
+            setIsEditing(false);
+            setPreviewImage(null);
+          }}
+          className="absolute right-0 top-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full"
+        >
+          <IoMdClose
+            className="absolute cursor-pointer rounded-full p-1 text-neutral-300 hover:text-neutral-500"
+            size={28}
+          />
+        </div>
+        <div className="flex flex-col items-center justify-center space-y-4">
           <label htmlFor="image" className="w-full">
-            <div className="rounded-xl border-2 border-dashed border-neutral-300 p-4 text-center transition-all duration-300 hover:border-blue-500 dark:border-neutral-600">
-              <div className="flex flex-col items-center justify-center space-y-2 text-neutral-500 dark:text-neutral-400">
+            <div className="rounded-xl border-2 border-dashed border-neutral-300 p-4 text-center transition-all duration-300 hover:border-blue-500">
+              <div className="flex flex-col items-center justify-center space-y-2 text-neutral-500">
                 <span className="overflow-clip text-sm">
                   {selectedFile
                     ? `Selected: ${selectedFile.name}`
@@ -132,14 +132,14 @@ const EditProfileImageForm = ({ setIsEditing }: EditProfileImageFormType) => {
           <button
             type="submit"
             disabled={!selectedFile || loading}
-            className="flex items-center justify-center space-x-2 rounded-xl bg-blue-600 px-6 py-3 text-white transition-all duration-300 hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+            className="bg-accent hover:bg-accetHover disabled:bg-accentDisabled flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-white transition-all duration-300 disabled:cursor-not-allowed"
           >
             {loading ? (
               <ClipLoader size={20} color="#ffffff" />
             ) : (
               <>
-                <FaCloudUploadAlt className="text-lg" />
                 <span>Upload</span>
+                <FaCloudUploadAlt className="text-lg" />
               </>
             )}
           </button>

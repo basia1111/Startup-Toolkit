@@ -64,18 +64,18 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
   };
 
   return (
-    <div className="group relative">
+    <div className="group relative pb-[120px]">
       <div className="relative">
         <img
           src={previewImage || user?.coverImage || '/images/cover-placeholder.png'}
-          className="user-profile-cover relative mb-4 h-44 w-full rounded-2xl object-cover transition-all duration-300 group-hover:brightness-75"
+          className="user-profile-cover relative mb-8 h-44 w-full rounded-xl object-cover transition-all duration-300 group-hover:brightness-75 md:h-60"
           alt="Cover"
         />
         <div
           onClick={() => setIsEditing(false)}
           className="absolute right-4 top-4 cursor-pointer rounded-full bg-white/20 p-2 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-white/40 group-hover:opacity-100"
         >
-          <IoClose className="text-xl text-white" />
+          <IoClose className="text-gray text-xl" />
         </div>
       </div>
 
@@ -88,12 +88,12 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
 
       <form
         onSubmit={handleSubmit}
-        className="mb-4 rounded-2xl border border-neutral-200 bg-white p-4 shadow-md transition-all duration-300 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800"
+        className="mb-4 rounded-2xl border border-neutral-200 bg-white p-4 shadow-md transition-all duration-300 hover:shadow-xl"
       >
         <div className="flex items-center space-x-4">
           <label htmlFor="cover" className="flex-grow cursor-pointer">
-            <div className="rounded-xl border-2 border-dashed border-neutral-300 p-4 text-center transition-all duration-300 hover:border-blue-500 dark:border-neutral-600">
-              <div className="flex items-center justify-center space-x-2 text-neutral-500 dark:text-neutral-400">
+            <div className="hover:border-accent rounded-xl border-2 border-dashed border-neutral-300 p-4 text-center transition-all duration-300">
+              <div className="flex items-center justify-center space-x-2 text-neutral-500">
                 <FaCloudUploadAlt className="text-2xl" />
                 <span className="text-sm">
                   {selectedFile ? `Selected: ${selectedFile.name}` : 'Click to select cover image'}
@@ -112,7 +112,7 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
           <button
             type="submit"
             disabled={!selectedFile || loading}
-            className="flex items-center justify-center space-x-2 rounded-xl bg-blue-600 px-6 py-3 text-white transition-all duration-300 hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+            className="bg-accent hover:bg-accentHover disabled:bg-accentDisabled flex items-center justify-center space-x-2 rounded-xl px-6 py-3 text-white transition-all duration-300 disabled:cursor-not-allowed"
           >
             {loading ? (
               <ClipLoader size={20} color="#ffffff" />

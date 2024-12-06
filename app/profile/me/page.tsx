@@ -10,5 +10,5 @@ export default async function ProfilePage() {
     redirect('/login?callbackUrl=/profile');
   }
 
-  return <Profile session={session} />;
+  return <Profile />;
 }

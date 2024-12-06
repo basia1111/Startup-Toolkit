@@ -13,15 +13,15 @@ const Cover = () => {
         <div className="relative">
           <img
             src={user?.coverImage || '/images/cover-placeholder.png'}
-            className="user-profile-cover relative mb-8 h-44 w-full rounded-xl object-cover"
+            className="user-profile-cover relative mb-8 h-44 w-full rounded-xl object-cover md:h-60"
           />
           <div
             onClick={() => {
               setIsEditing(true);
             }}
-            className="bg-softWhite absolute bottom-6 right-8 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-opacity-50 p-2 shadow-md backdrop-blur-sm hover:bg-opacity-70"
+            className="absolute right-4 top-4 cursor-pointer rounded-full bg-white/20 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/40"
           >
-            <FaPaintBrush className="text-gray" size={12} />
+            <FaPaintBrush className="text-gary text-xl" />
           </div>
         </div>
       ) : (

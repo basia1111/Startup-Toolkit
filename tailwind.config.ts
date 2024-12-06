@@ -12,7 +12,7 @@ const config: Config = {
         Inter: ['"Inter"', 'sans-serif'],
       },
       colors: {
-        black: '#0A0E14',
+        black: '#060612',
         gray: '#171b21',
         mediumGray: '#939393',
         lightGray: '#eaeaea',
@@ -22,6 +22,9 @@ const config: Config = {
         lightGreen: 'rgb(207 255 236)',
         red: '#f74242',
         softWhite: '#f9f9f9',
+        accent: '#4b61ed',
+        accentDisabled: '#909ef9',
+        accentHover: '#2435a5',
       },
     },
   },

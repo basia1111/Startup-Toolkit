@@ -12,10 +12,10 @@ const ProfileImage = () => {
   const { user } = useContext(UserContext)!;
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="font-Inter relative flex flex-col items-center pl-4 md:items-start">
       {!isEditing ? (
-        <>
-          <div className="border-softWhite relative mb-6 h-48 w-48 overflow-hidden rounded-full border-8 shadow-lg">
+        <div className="relative h-28 w-32 md:h-36 md:w-40">
+          <div className="border-softWhite mb-6 h-28 w-28 overflow-hidden rounded-full border-4 md:h-36 md:w-36 md:border-8">
             <Image
               src={user?.image || '/images/avatar-placeholder.png'}
               alt="profile picture"
@@ -30,11 +30,11 @@ const ProfileImage = () => {
               setIsEditing(true);
               console.log('click');
             }}
-            className="bg-softWhite absolute bottom-6 right-8 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-800 p-2 shadow-md hover:bg-zinc-200"
+            className="bg-softWhite absolute bottom-0 right-8 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-800 p-2 shadow-md hover:bg-zinc-200"
           >
             <FaCamera className="text-gray" size={12} />
           </div>
-        </>
+        </div>
       ) : (
         <EditProfileImageForm setIsEditing={setIsEditing} />
       )}
