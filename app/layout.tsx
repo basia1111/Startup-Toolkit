@@ -24,7 +24,7 @@ const Root = ({ children }: RootProps) => {
         <UserContextProvider>
           <Provider>
             <ModalContextProvider>
-              <main className="app-wrapper relative flex min-h-screen w-full flex-col items-center bg-black">
+              <main className="app-wrapper relative flex min-h-screen w-full flex-col items-center">
                 <Header />
                 {children}
                 <Modal />

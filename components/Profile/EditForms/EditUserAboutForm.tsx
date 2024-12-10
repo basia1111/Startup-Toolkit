@@ -15,7 +15,6 @@ const EditUserAboutForm = ({ closeModal }: UserDetailsProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const form = e.currentTarget;
     const formData = new FormData(form);
     setMessage('');
@@ -41,37 +40,43 @@ const EditUserAboutForm = ({ closeModal }: UserDetailsProps) => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl rounded-2xl bg-white">
-      <h2 className="mb-6 text-2xl font-bold text-zinc-900">Update About</h2>
+    <div className="relative" onClick={(e) => e.stopPropagation()}>
+      <div className="mb-8 flex items-center justify-between">
+        <h2 className="text-2xl font-semibold text-black/90">Update About</h2>
+      </div>
 
       {message && (
-        <div className="border-red text-red mb-4 w-full rounded-md border-[1px] bg-[#f0d8d8] px-2 py-1 text-sm">
+        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
           {message}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="w-full gap-8">
-        <div>
-          <h3 className="text-gray text-lg font-semibold">Personal Information</h3>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-6">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-1 rounded-full bg-[#8B5CF6]/20" />
+            <h3 className="text-lg font-medium text-zinc-800">About You</h3>
+          </div>
+
           <textarea
             name="about"
             id="about"
-            rows="10"
+            rows={8}
             placeholder="Write something about yourself..."
             defaultValue={user?.about || ''}
-            className="max-h-[70vh] w-full overflow-y-scroll"
+            className="scrollbar-thin scrollbar-track-zinc-100 scrollbar-thumb-zinc-300 w-full rounded-lg border border-zinc-200 bg-white/50 px-4 py-3 text-zinc-800 transition-all duration-200 placeholder:text-zinc-400 hover:bg-white/70 focus:border-[#8B5CF6] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]/20"
           />
           <button
             type="submit"
             disabled={loading}
-            className="bg-accent hover:bg-accentHover disabled:bg-accentDisabled w-full transform rounded-md px-2 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="group relative w-full overflow-hidden rounded-lg bg-[#8B5CF6] px-8 py-3 text-white transition-all duration-200 hover:bg-[#9B6CF7] hover:shadow-lg hover:shadow-[#8B5CF6]/25 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]/20 disabled:opacity-70"
           >
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+
             {loading ? (
               <ClipLoader size={20} color="#ffffff" />
             ) : (
-              <>
-                <span>Update Profile</span>
-              </>
+              <span className="relative font-medium">Save Changes</span>
             )}
           </button>
         </div>

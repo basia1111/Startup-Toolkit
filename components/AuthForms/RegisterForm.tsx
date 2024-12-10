@@ -12,16 +12,16 @@ const RegisterForm = () => {
       <div className="mb-6 mt-8">
         {isPending ? <div className="text-sm text-white">Loading...</div> : ''}
         {message && message === 'success' ? (
-          <div className="w-full rounded-md border-[1px] border-emerald-600 bg-emerald-100 px-2 py-1 text-sm text-[#f74242]">
-            <p className="text-emerald-600">
+          <div className="w-full rounded-md border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm backdrop-blur-sm">
+            <p className="text-emerald-400">
               Your account has been registered. <br />
-              <a href="/login" className="underline">
+              <a href="/login" className="text-emerald-300 underline hover:text-emerald-200">
                 login here
               </a>
             </p>
           </div>
         ) : message ? (
-          <div className="border-red w-full rounded-md border-[1px] bg-[#f0d8d8] px-2 py-1 text-sm text-[#f74242]">
+          <div className="w-full rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400 backdrop-blur-sm">
             {message}
           </div>
         ) : (
@@ -35,7 +35,7 @@ const RegisterForm = () => {
         <PasswordInput />
         <button
           type="submit"
-          className="bg-accent w-full rounded-md bg-gray-800 px-2 py-3 text-white"
+          className="w-full rounded-md border border-white/10 bg-black/50 px-6 py-3 text-base text-white backdrop-blur-sm transition-all hover:border-white/20 hover:bg-black/70"
         >
           Create account
         </button>

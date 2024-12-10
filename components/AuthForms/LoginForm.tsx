@@ -17,7 +17,7 @@ const LoginForm = () => {
         });
 
         if (result?.error) {
-          return 'Invalid creddentials';
+          return 'Invalid credentials';
         } else {
           window.location.href = '/profile';
         }
@@ -32,20 +32,21 @@ const LoginForm = () => {
 
   return (
     <>
-      {isPending ? <div className="text-sm text-white">Loading...</div> : ''}
-      {message ? (
-        <div className="border-red text-red mb-4 w-full rounded-md border-[1px] bg-[#f0d8d8] px-2 py-1 text-sm">
-          {message}
-        </div>
+      {isPending ? (
+        <div className="text-sm text-white">Loading...</div>
       ) : (
-        ''
+        message && (
+          <div className="mb-4 w-full rounded-md border-[1px] border-red-500 bg-red-100/10 px-2 py-1 text-sm text-red-400">
+            {message}
+          </div>
+        )
       )}
-      <form action={formAction}>
+      <form action={formAction} className="space-y-4">
         <Input type="email" name="email" />
         <PasswordInput />
         <button
           type="submit"
-          className="bg-accent w-full rounded-md bg-gray-800 px-2 py-3 text-white"
+          className="group relative flex w-full justify-center rounded-md bg-white/20 px-6 py-3 text-base text-white backdrop-blur-md transition-all hover:bg-white/30"
         >
           Sign in
         </button>

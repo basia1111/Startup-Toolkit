@@ -1,6 +1,6 @@
 import { UserContext } from '@contexts/UserContext';
 import React, { useState, useContext } from 'react';
-import { FaCloudUploadAlt } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaImage } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import { ClipLoader } from 'react-spinners';
 
@@ -64,43 +64,49 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
   };
 
   return (
-    <div className="group relative pb-[120px]">
+    <div className="group relative pb-[20px]">
       <div className="relative">
-        <img
-          src={previewImage || user?.coverImage || '/images/cover-placeholder.png'}
-          className="user-profile-cover relative mb-8 h-44 w-full rounded-xl object-cover transition-all duration-300 group-hover:brightness-75 md:h-60"
-          alt="Cover"
-        />
-        <div
-          onClick={() => setIsEditing(false)}
-          className="absolute right-4 top-4 cursor-pointer rounded-full bg-white/20 p-2 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-white/40 group-hover:opacity-100"
-        >
-          <IoClose className="text-gray text-xl" />
+        <div className="relative h-44 overflow-hidden rounded-2xl bg-white md:h-60">
+          <img
+            src={previewImage || user?.coverImage || '/images/cover-placeholder.png'}
+            className="h-full w-full object-cover transition-all duration-300 group-hover:brightness-75"
+            alt="Cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-300/20 to-violet-300/60" />
+          <button
+            onClick={() => setIsEditing(false)}
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/20 p-2 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-black/40"
+          >
+            <IoClose className="text-2xl text-white/80" />
+          </button>
         </div>
       </div>
-
       {message && (
-        <div className="mb-4 flex items-center rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-700">
+        <div className="mb-4 rounded-xl border border-red-500/10 bg-red-500/5 px-4 py-3 text-sm text-red-400 backdrop-blur-sm">
           <span className="mr-2">⚠️</span>
           {message}
         </div>
       )}
-
       <form
         onSubmit={handleSubmit}
-        className="mb-4 rounded-2xl border border-neutral-200 bg-white p-4 shadow-md transition-all duration-300 hover:shadow-xl"
+        className="bg-black/4 mt-4 space-y-4 rounded-2xl border border-white/10 p-6 backdrop-blur-sm"
       >
-        <div className="flex items-center space-x-4">
-          <label htmlFor="cover" className="flex-grow cursor-pointer">
-            <div className="hover:border-accent rounded-xl border-2 border-dashed border-neutral-300 p-4 text-center transition-all duration-300">
-              <div className="flex items-center justify-center space-x-2 text-neutral-500">
-                <FaCloudUploadAlt className="text-2xl" />
-                <span className="text-sm">
-                  {selectedFile ? `Selected: ${selectedFile.name}` : 'Click to select cover image'}
-                </span>
-              </div>
+        <div className="flex items-center gap-4">
+          <label
+            htmlFor="cover"
+            className="flex flex-grow cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-white/10 bg-black/20 p-6 text-center transition-all duration-300 hover:border-white/20"
+          >
+            <div className="w-12 rounded-full bg-[#8B5CF6]/10 p-3 transition-all duration-300 group-hover:bg-[#8B5CF6]/20">
+              <FaImage className="h-6 w-6 text-[#8B5CF6]" />
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-white/90">
+                {selectedFile ? selectedFile.name : 'Click to upload project cover'}
+              </p>
+              <p className="text-xs text-zinc-500">SVG, PNG, JPG or GIF (max. 2MB)</p>
             </div>
           </label>
+
           <input
             type="file"
             name="cover"
@@ -109,10 +115,11 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
             onChange={handleChange}
             accept="image/*"
           />
+
           <button
             type="submit"
             disabled={!selectedFile || loading}
-            className="bg-accent hover:bg-accentHover disabled:bg-accentDisabled flex items-center justify-center space-x-2 rounded-xl px-6 py-3 text-white transition-all duration-300 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-[#8B5BF6] px-6 py-3 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? (
               <ClipLoader size={20} color="#ffffff" />

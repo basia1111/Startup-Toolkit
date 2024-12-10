@@ -15,27 +15,27 @@ export const registerCredentials = async (name: string, email: string, password:
   const existingUser = await User.findOne({ email });
   if (existingUser && existingUser.authProvider == 'google') {
     return (
-      <div>
-        <p className="text-red font-Inter">
+      <>
+        <p>
           It looks like you&apos;ve already registered using Google Sign-In. For security reasons,
           you&apos;ll need to use the &quot;Sign in with Google&quot; button to access your account.
         </p>
-        <p className="mb-3">
-          <a href="/login" className="underline">
-            Go to Login Page
-          </a>
-        </p>
-      </div>
+        <a href="/login" className="mt-2 inline-block text-white/80 underline hover:text-white">
+          Go to Login Page
+        </a>
+      </>
     );
   } else if (existingUser) {
     return (
-      <p className="text-red font-Inter">
-        An account with this email address already exists ({email}).
-        <a href="/login" className="underline">
-          {' '}
-          Please sign in to continue.
-        </a>
-      </p>
+      <>
+        <p>
+          An account with this email address already exists ({email}).
+          <a href="/login" className="text-white/80 underline hover:text-white">
+            {' '}
+            Please sign in to continue.
+          </a>
+        </p>
+      </>
     );
   }
 

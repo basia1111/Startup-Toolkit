@@ -59,7 +59,10 @@ const AccountActionsDropdown = () => {
 
   return (
     <div ref={dropdownRef} className="relative">
-      <PiDotsThreeVerticalBold onClick={handleDropdown} />
+      <PiDotsThreeVerticalBold
+        onClick={handleDropdown}
+        className="cursor-pointer text-white/80 transition-colors hover:text-white"
+      />
 
       <AnimatePresence>
         {actionDropdown && (
@@ -68,12 +71,12 @@ const AccountActionsDropdown = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute right-2 top-10 flex w-auto flex-col gap-2 rounded bg-white p-4 pr-20 text-left text-black shadow-lg"
+            className="absolute right-2 top-10 flex w-auto flex-col gap-2 rounded-md border border-white/10 bg-black/95 p-4 pr-20 text-left text-white/90 shadow-lg backdrop-blur-md"
           >
-            <Link href="/profile/me" className="hover:text-accent">
+            <Link href="/profile/me" className="transition-colors hover:text-white">
               Profile
             </Link>
-            <p className="hover:text-accent cursor-pointer" onClick={handleLogout}>
+            <p className="cursor-pointer transition-colors hover:text-white" onClick={handleLogout}>
               Logout
             </p>
           </motion.div>
@@ -82,5 +85,4 @@ const AccountActionsDropdown = () => {
     </div>
   );
 };
-
 export default AccountActionsDropdown;

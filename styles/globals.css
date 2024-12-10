@@ -19,3 +19,9 @@
 .glow-button:hover {
   box-shadow: rgba(255, 255, 255, 0.3) 0px 0px 12px;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

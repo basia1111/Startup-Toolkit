@@ -1,51 +1,80 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { GoArrowUpRight } from 'react-icons/go';
 
-const textVariants = {
-  initial: { textShadow: '0px 0px 0px rgba(255, 255, 255, 0)' },
-  animate: {
-    textShadow: [
-      '0px 0px 9px rgba(255, 255, 255, 1)',
-      '0px 0px 15px rgba(255, 255, 255, 0.8)',
-      '0px 0px 10px rgba(254, 254, 238, 1)',
-      '0px 0px 17px rgba(255, 255, 255, 1)',
-      '0px 0px 10px rgba(255, 255, 255, 1)',
-      '0px 0px 15px rgba(254, 254, 238, 0.7)',
-    ],
-  },
-};
+const DarkHeroSection = () => {
+  const textVariants: Variants = {
+    initial: { textShadow: '0 0 0 rgba(255, 255, 255, 0)' },
+    animate: {
+      textShadow: [
+        '0 0 12px rgba(255, 255, 255, 0.8)',
+        '0 0 20px rgba(255, 255, 255, 0.6)',
+        '0 0 15px rgba(254, 254, 238, 0.8)',
+        '0 0 22px rgba(255, 255, 255, 0.7)',
+        '0 0 15px rgba(255, 255, 255, 0.8)',
+        '0 0 20px rgba(254, 254, 238, 0.6)',
+      ],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        repeatType: 'mirror',
+      },
+    },
+  };
 
-const Hero = () => {
+  const buttonVariants: Variants = {
+    hover: {
+      scale: 1.05,
+      transition: {
+        type: 'spring',
+        stiffness: 400,
+        damping: 10,
+      },
+    },
+    tap: {
+      scale: 0.95,
+    },
+  };
+
   return (
-    <section className="hero flex w-full max-w-[1320px] flex-col items-center bg-opacity-80 bg-contain bg-center bg-no-repeat py-32 lg:py-64">
-      <h1 className="hero-heading font-Inter text-center text-2xl font-normal text-white [text-shadow:_3px_1px_50px_rgb(0_0_0_/_80%)] md:text-4xl lg:text-5xl">
-        Empowering Entrepreneurs to <br />
+    <section className="relative flex h-screen w-full items-center justify-center bg-black bg-[url('/images/hero-bg.png')] bg-contain bg-center bg-no-repeat text-center">
+      <div className="z-10 text-white">
+        <motion.h1
+          className="text-4xl font-bold sm:text-5xl lg:text-6xl"
+          variants={textVariants}
+          initial="initial"
+          animate="animate"
+        >
+          Unleash Your <br />
+          Entrepreneurial Potential
+        </motion.h1>
         <motion.p
-          className="p-1 md:p-4"
+          className="mt-4 text-lg sm:text-xl lg:text-2xl"
           variants={textVariants}
           initial="initial"
           animate="animate"
           transition={{
-            duration: 6,
-            repeat: Infinity,
-            repeatType: 'mirror',
+            delay: 0.5,
           }}
         >
-          Transform Ideas into Reality
+          Transform your ideas into reality with our powerful platform.
         </motion.p>
-      </h1>
-      <a
-        href="/login"
-        className="font-Inter glow-button mt-4 flex items-center gap-2 rounded-full bg-white px-4 py-2 text-base"
-      >
-        Start now
-        <GoArrowUpRight />
-      </a>
+        <motion.a
+          href="/signup"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/20 px-6 py-3 text-base text-white backdrop-blur-md transition-all hover:bg-white/30"
+          variants={buttonVariants}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          Get Started
+          <GoArrowUpRight className="ml-2" />
+        </motion.a>
+      </div>
+      <div className="absolute inset-0 top-14 z-0 h-[80vh] bg-gradient-to-br from-blue-800/70 via-purple-800/70 to-black blur-[100px]" />
     </section>
   );
 };
 
-export default Hero;
+export default DarkHeroSection;
