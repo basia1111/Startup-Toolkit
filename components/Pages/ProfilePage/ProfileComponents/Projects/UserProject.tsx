@@ -20,39 +20,56 @@ const UserProject = ({ project, setProjectsList }: UserProjectProps) => {
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a27]/80 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-white/20">
-      <div className="relative h-52 overflow-hidden bg-white">
-        <img
-          src={project.cover}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          alt={project.title}
-        />
-      </div>
-      <div className="relative space-y-3 p-5">
-        <div className="space-y-2">
-          <h3 className="text-lg font-medium text-white/90 transition-colors group-hover:text-white">
-            {project?.title}
-          </h3>
-          <p className="line-clamp-2 text-sm text-white/70">{project?.description}</p>
+    <div className="group relative">
+      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-purple-600/0 via-purple-600/0 to-pink-600/0 blur-md transition-all duration-500 group-hover:from-purple-600/20 group-hover:via-pink-600/20 group-hover:to-purple-600/20" />
+
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a27]/80 backdrop-blur-xl transition-all duration-500 hover:border-white/20">
+        <div className="relative h-52 overflow-hidden">
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#1a1a27]/80 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+          <img
+            src={project.cover || '/images/project-cover.png'}
+            className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110 group-hover:filter"
+            alt={project.title}
+          />
         </div>
 
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/10">
-              <img
-                src={user?.image || '/images/avatar'}
-                className="h-full w-full object-cover"
-                alt={user?.name}
-              />
-            </div>
-            <span className="text-sm text-white/60">{user?.name}</span>
+        <div className="relative space-y-4 p-5">
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium text-white/90 transition-colors duration-300 group-hover:text-white">
+              {project?.title}
+            </h3>
+            <p className="line-clamp-2 text-sm text-white/70 transition-colors duration-300 group-hover:text-white/80">
+              {project?.description}
+            </p>
           </div>
-          <IoTrashBinOutline
-            onClick={handleClick}
-            className="text-white/35 transition-colors hover:text-white/60"
-          />
+
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/10 transition-all duration-300 group-hover:border-white/20">
+                  <img
+                    src={user?.image || '/images/avatar'}
+                    className="h-full w-full object-cover"
+                    alt={user?.name}
+                  />
+                </div>
+              </div>
+              <span className="text-sm text-white/60 transition-colors duration-300 group-hover:text-white/80">
+                {user?.name}
+              </span>
+            </div>
+
+            <button
+              onClick={handleClick}
+              className="group/btn relative rounded-full p-2 transition-all duration-300 hover:bg-white/5"
+            >
+              <IoTrashBinOutline className="text-white/35 transition-colors duration-300 group-hover/btn:text-white/60" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

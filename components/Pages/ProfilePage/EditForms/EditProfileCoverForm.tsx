@@ -115,19 +115,19 @@ const EditProfileCoverForm = ({ setIsEditing }: EditProfileCoverFormProps) => {
             onChange={handleChange}
             accept="image/*"
           />
-
           <button
             type="submit"
             disabled={!selectedFile || loading}
-            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-[#8B5BF6] px-6 py-3 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70 disabled:cursor-not-allowed disabled:opacity-50"
+            className="group relative overflow-hidden rounded-xl border border-purple-500/20 bg-white/5 px-8 py-3 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
           >
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600/0 to-pink-600/0 transition-opacity duration-300 group-hover:from-purple-600/20 group-hover:to-pink-600/20" />
             {loading ? (
               <ClipLoader size={20} color="#ffffff" />
             ) : (
-              <>
+              <span className="relative flex items-center justify-center gap-2 font-light text-purple-200/80 transition-colors duration-300 group-hover:text-white">
                 <FaCloudUploadAlt className="text-lg" />
-                <span>Upload</span>
-              </>
+                Upload Image
+              </span>
             )}
           </button>
         </div>

@@ -3,7 +3,7 @@
 import React, { createContext, ReactNode, useState, useContext, useEffect } from 'react';
 import { getSession } from 'next-auth/react';
 import { User } from '@types';
-import { findUser } from '@lib/findUser';
+import { findUser } from '@lib/user/findUser';
 
 type UserContextType = {
   user: User | null;

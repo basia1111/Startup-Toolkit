@@ -1,6 +1,6 @@
 'use server';
 
-import { registerCredentials } from '@lib/registerCredentials';
+import { registerCredentials } from '@lib/auth/registerCredentials';
 
 export const register = async (_: string | null, formData: FormData) => {
   const name = formData.get('name') as string;

@@ -14,19 +14,21 @@ const UserDetails = () => {
   return (
     <div className="flex flex-col items-center md:mb-8 md:items-start">
       <h1 className="flex items-center gap-3 pb-1 text-2xl font-light text-white md:text-3xl">
-        {user?.name}
+        <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+          {user?.name}
+        </span>
         <button
           onClick={() => openModal(<EditUserDataForm closeModal={closeModal} />)}
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-black/50 transition-all hover:bg-black/70 md:h-8 md:w-8"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-purple-500/20 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-purple-500/40 hover:bg-white/10"
         >
-          <FaPencilAlt size="14" className="text-white/60" />
+          <FaPencilAlt size="14" className="text-purple-400" />
         </button>
       </h1>
 
-      <p className="ms:text-lg text-msfont-light pb-3 text-white/80">{user?.professionalTitle}</p>
+      <p className="pb-3 text-lg font-light text-purple-200/80">{user?.professionalTitle}</p>
 
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs text-white/70 md:text-sm">
-        <FaLocationDot />
+      <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-white/5 px-4 py-1.5 text-sm text-purple-200/80 backdrop-blur-sm">
+        <FaLocationDot className="text-purple-400" />
         <span>{user?.city}</span>
       </div>
     </div>

@@ -6,12 +6,12 @@ import AccountActionsDropdown from './AccountActionsDropdown';
 const AccountActions = async () => {
   const session = await auth();
   return (
-    <div className="w-50 font-Inter z-50 hidden justify-end text-white/90 lg:flex">
+    <div className="w-50 z-50 hidden justify-end font-Inter text-white/90 lg:flex">
       {session?.user?.name ? (
         <div className="flex w-full items-center gap-2 text-right">
           <a href="/profile/me" className="cursor-pointer">
             <img
-              src={session.user.image || '/images/avatar-placeholder.png'}
+              src={session.user.image || '/images/avatar.png'}
               alt="profile picture"
               width={30}
               height={30}

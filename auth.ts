@@ -1,9 +1,9 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Profile } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import verifyUser from '@lib/verifyUser';
-import { findUser } from '@lib/findUser';
-import { registerGoogle } from '@lib/registerGoogle';
+import verifyUser from '@lib/auth/verifyUser';
+import { findUser } from '@lib/user/findUser';
+import { registerGoogle } from '@lib/auth/registerGoogle';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -41,14 +41,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async redirect({ baseUrl }) {
       return `${baseUrl}/profile/me`;
     },
-    async jwt({ token, account, profile, trigger, session }) {
+    async jwt({ token, account, profile, trigger, session, user }) {
       if (account?.provider === 'google') {
         const { email, name, picture } = profile as any;
 
-        let user = await findUser(email);
-        if (!user) {
-          user = await registerGoogle({ name, email, image: picture });
+        let googleUser = await findUser(email);
+        if (!googleUser) {
+          googleUser = await registerGoogle({ name, email, image: picture });
         }
+        token.id = googleUser.id;
+        token.name = googleUser.name;
+        token.email = googleUser.email;
+        token.image = googleUser.image;
+      } else if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
@@ -69,6 +74,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           emailVerified: null,
         };
       }
+      console.log(session);
       return session;
     },
   },

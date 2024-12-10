@@ -10,20 +10,27 @@ const Cover = () => {
   return (
     <div>
       {!isEditing ? (
-        <div className="relative rounded-xl bg-white">
-          <img
-            src={user?.coverImage || '/images/bg.png'}
-            className="user-profile-cover relative mb-8 h-44 w-full rounded-xl object-cover md:h-60"
-          />
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-transparent via-violet-300/20 to-violet-300/60" />
-          <button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-            className="absolute right-4 top-4 cursor-pointer rounded-full border border-white/20 bg-black/20 p-2 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-black/40"
-          >
-            <FaPaintBrush size="14" className="text-xl text-white/70" />
-          </button>
+        <div className="group relative">
+          <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl">
+            <img
+              src={user?.coverImage || '/images/cover-placeholder.png'}
+              className="relative h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-60"
+              alt="Profile Cover"
+            />
+
+            <div className="absolute inset-0 top-[50%] h-1/2 bg-gradient-to-b from-purple-900/0 via-purple-900/10 to-purple-900/30" />
+            <button
+              onClick={() => setIsEditing(true)}
+              className="group/btn absolute right-4 top-4 flex items-center gap-2 rounded-full border border-purple-500/20 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-purple-500/40 hover:bg-white/10"
+            >
+              <FaPaintBrush className="text-purple-400 transition-colors duration-300 group-hover/btn:text-white" />
+              <span className="hidden text-sm font-light text-purple-200/80 transition-colors duration-300 group-hover/btn:text-white md:block">
+                Edit Cover
+              </span>
+            </button>
+
+            <div className="absolute left-0 h-[1px] w-full bg-gradient-to-r from-purple-600/50 via-pink-600/50 to-purple-600/50" />
+          </div>
         </div>
       ) : (
         <EditProfileCoverForm setIsEditing={setIsEditing} />

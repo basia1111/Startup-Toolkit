@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { FaCirclePlus } from 'react-icons/fa6';
+import React, { useContext } from 'react';
+import { FiPlus } from 'react-icons/fi';
 import { ModalContext } from '@contexts/ModalContext';
 import CreateProjectForm from './CreateProjectForm';
 import { Project } from '@types';
@@ -12,15 +12,17 @@ const CreateProject = ({ updateProjects }: CreateProjectProps) => {
   const { openModal, closeModal } = useContext(ModalContext)!;
 
   return (
-    <button
-      onClick={() => {
-        openModal(<CreateProjectForm closeModal={closeModal} updateProjects={updateProjects} />);
-      }}
-      className="group flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm text-white/70 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-black/30 hover:text-white"
-    >
-      <FaCirclePlus className="text-base transition-transform group-hover:scale-110" />
-      <span>New Project</span>
-    </button>
+    <div className="group relative">
+      <button
+        onClick={() => {
+          openModal(<CreateProjectForm closeModal={closeModal} updateProjects={updateProjects} />);
+        }}
+        className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-medium text-white shadow-lg shadow-purple-900/30 transition-all duration-300 hover:shadow-purple-900/50"
+      >
+        <FiPlus />
+        <span>New Project</span>
+      </button>
+    </div>
   );
 };
 

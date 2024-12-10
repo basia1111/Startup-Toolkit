@@ -1,5 +1,5 @@
 import Project from '@models/Project';
-import connectDB from './db';
+import connectDB from '@lib/db';
 
 export const findUserProjects = async (id: string) => {
   if (!id) {

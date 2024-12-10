@@ -42,36 +42,40 @@ const EditUserAboutForm = ({ closeModal }: UserDetailsProps) => {
   return (
     <div className="relative" onClick={(e) => e.stopPropagation()}>
       <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-black/90">Update About</h2>
+        <h2 className="text-2xl font-semibold text-black text-transparent">Update About</h2>
       </div>
 
       {message && (
-        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+          <span className="mr-2">⚠️</span>
           {message}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-6">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-1 rounded-full bg-[#8B5CF6]/20" />
-            <h3 className="text-lg font-medium text-zinc-800">About You</h3>
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-1 rounded-full bg-gradient-to-b from-purple-600 to-pink-600" />
+            <h3 className="text-gray-800 text-lg font-medium">About You</h3>
           </div>
 
-          <textarea
-            name="about"
-            id="about"
-            rows={8}
-            placeholder="Write something about yourself..."
-            defaultValue={user?.about || ''}
-            className="scrollbar-thin scrollbar-track-zinc-100 scrollbar-thumb-zinc-300 w-full rounded-lg border border-zinc-200 bg-white/50 px-4 py-3 text-zinc-800 transition-all duration-200 placeholder:text-zinc-400 hover:bg-white/70 focus:border-[#8B5CF6] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]/20"
-          />
+          <div className="group relative">
+            <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 blur-sm transition-all duration-300 group-hover:from-purple-500/20 group-hover:via-pink-500/20 group-hover:to-purple-500/20" />
+            <textarea
+              name="about"
+              id="about"
+              rows={8}
+              placeholder="Write something about yourself..."
+              defaultValue={user?.about || ''}
+              className="text-gray-700 placeholder:text-gray-400 scrollbar-thin scrollbar-track-purple-50 scrollbar-thumb-purple-200 relative w-full rounded-xl border border-purple-100 bg-white px-4 py-3 transition-all duration-300 hover:border-purple-200 focus:border-purple-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+            />
+          </div>
           <button
             type="submit"
             disabled={loading}
-            className="group relative w-full overflow-hidden rounded-lg bg-[#8B5CF6] px-8 py-3 text-white transition-all duration-200 hover:bg-[#9B6CF7] hover:shadow-lg hover:shadow-[#8B5CF6]/25 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]/20 disabled:opacity-70"
+            className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 px-8 py-3.5 text-white shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400/20 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
             {loading ? (
               <ClipLoader size={20} color="#ffffff" />
@@ -81,6 +85,11 @@ const EditUserAboutForm = ({ closeModal }: UserDetailsProps) => {
           </button>
         </div>
       </form>
+
+      <div className="pointer-events-none fixed inset-0 hidden md:block">
+        <div className="absolute -right-40 top-0 h-72 w-72 rounded-full bg-purple-600/5 blur-3xl" />
+        <div className="absolute -left-40 bottom-0 h-72 w-72 rounded-full bg-pink-600/5 blur-3xl" />
+      </div>
     </div>
   );
 };
