@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { ModalContext } from '@contexts/ModalContext';
-import EditUserDataForm from './EditForms/EditUserDataForm';
+import EditUserDataForm from '../EditForms/EditUserDataForm';
 import { UserContext } from '@contexts/UserContext';
 
 const UserDetails = () => {

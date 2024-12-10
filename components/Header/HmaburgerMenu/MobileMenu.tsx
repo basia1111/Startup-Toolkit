@@ -86,16 +86,8 @@ const MobileMenu = ({ isMenuOpen, isExiting, setIsMenuOpen, setIsExiting }: Mobi
                 className="text-3xl font-light text-white transition-colors hover:text-purple-300"
                 onClick={handleClick}
               >
-                <Link href="/">Find project</Link>
+                <Link href="/projects">Projects</Link>
               </motion.li>
-              <motion.li
-                variants={menuLinksVariants}
-                className="text-3xl font-light text-white transition-colors hover:text-purple-300"
-                onClick={handleClick}
-              >
-                <Link href="/">Trending</Link>
-              </motion.li>
-
               <motion.div
                 variants={menuLinksVariants}
                 className="absolute bottom-4 flex w-full flex-col items-center justify-center border pt-6"

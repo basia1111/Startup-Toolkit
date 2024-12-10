@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 import { FaCamera } from 'react-icons/fa';
-import EditProfileImageForm from './EditForms/EditProfileImageForm';
+import EditProfileImageForm from '../EditForms/EditProfileImageForm';
 import { UserContext } from '@contexts/UserContext';
 import { ModalContext } from '@contexts/ModalContext';
 

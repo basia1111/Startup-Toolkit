@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '@auth';
 import { redirect } from 'next/navigation';
-import Profile from '@components/Profile/Profile';
+import Profile from '@components/Pages/ProfilePage/Profile';
 
 export default async function ProfilePage() {
   const session = await auth();

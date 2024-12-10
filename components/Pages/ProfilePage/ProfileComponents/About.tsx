@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
-import EditUserAboutForm from './EditForms/EditUserAboutForm';
+import EditUserAboutForm from '../EditForms/EditUserAboutForm';
 import { ModalContext } from '@contexts/ModalContext';
 import { UserContext } from '@contexts/UserContext';
 

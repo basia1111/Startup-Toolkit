@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FaPaintBrush } from 'react-icons/fa';
-import EditProfileCoverForm from './EditForms/EditProfileCoverForm';
+import EditProfileCoverForm from '../EditForms/EditProfileCoverForm';
 import { UserContext } from '@contexts/UserContext';
 
 const Cover = () => {

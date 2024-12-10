@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useContext } from 'react';
-import Cover from './Cover';
-import About from './About';
-import Projects from './Projects';
-import ProfileImage from './ProfileImage';
-import UserDetails from './UserDetails';
-import SocialLinks from './SocialLinks';
+import Cover from './ProfileComponents/Cover';
+import About from './ProfileComponents/About';
+import Projects from './ProfileComponents/Projects/Projects';
+import ProfileImage from './ProfileComponents/ProfileImage';
+import UserDetails from './ProfileComponents/UserDetails';
+import SocialLinks from './ProfileComponents/SocialLinks';
 import { UserContext } from '@contexts/UserContext';
 
 const Profile = () => {

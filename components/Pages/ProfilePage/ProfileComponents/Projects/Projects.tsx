@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CreateProject from '@components/Project/UserProjects/CreateProject';
+import CreateProject from '@components/Pages/ProfilePage/ProfileComponents/Projects/CreateProject';
 import { Project } from '@types';
-import UserProject from '../Project/UserProjects/UserProject';
+import UserProject from './UserProject';
 
 const Projects = () => {
   const [projectsList, setProjectsList] = useState<Project[] | null>(null);
