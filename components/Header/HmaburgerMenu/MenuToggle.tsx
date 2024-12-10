@@ -19,12 +19,10 @@ const MenuToggle = ({ setIsMenuOpen, setIsExiting, isMenuOpen }: MenuToggleProps
     closed: {
       rotate: 0,
       translateY: 0,
-      backgroundColor: '#fff',
     },
     opened: {
       rotate: 45,
       translateY: 10,
-      backgroundColor: '#1a1a1a',
     },
   };
   const center = {
@@ -39,12 +37,10 @@ const MenuToggle = ({ setIsMenuOpen, setIsExiting, isMenuOpen }: MenuToggleProps
     closed: {
       rotate: 0,
       translateY: 0,
-      backgroundColor: '#fff',
     },
     opened: {
       rotate: -45,
       translateY: -11,
-      backgroundColor: '#1a1a1a',
     },
   };
 

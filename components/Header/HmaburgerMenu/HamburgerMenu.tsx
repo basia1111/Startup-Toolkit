@@ -9,7 +9,7 @@ const HamburgerMenu = () => {
   const [isExiting, setIsExiting] = useState(false);
 
   return (
-    <div className="menu-wrapper gap- relative items-center md:flex md:flex-row">
+    <div className="menu-wrapper items-center md:flex md:flex-row">
       <MenuToggle
         setIsExiting={setIsExiting}
         setIsMenuOpen={setIsMenuOpen}
