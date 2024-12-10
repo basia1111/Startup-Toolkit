@@ -1,9 +1,23 @@
+import React, { useContext } from 'react';
 import { UserContext } from '@contexts/UserContext';
 import { Project } from '@types';
-import React, { useContext } from 'react';
+import { IoTrashBinOutline } from 'react-icons/io5';
+import { ModalContext } from '@contexts/ModalContext';
+import DeleteProject from './DeleteProject';
 
-const UserProject = ({ project }: { project: Project }) => {
+type UserProjectProps = {
+  project: Project;
+  setProjectsList: React.Dispatch<React.SetStateAction<Project[] | null>>;
+};
+const UserProject = ({ project, setProjectsList }: UserProjectProps) => {
   const { user } = useContext(UserContext)!;
+  const { openModal, closeModal } = useContext(ModalContext)!;
+
+  const handleClick = () => {
+    openModal(
+      <DeleteProject setProjectsList={setProjectsList} id={project._id} closeModal={closeModal} />,
+    );
+  };
 
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a27]/80 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-white/20">
@@ -35,6 +49,10 @@ const UserProject = ({ project }: { project: Project }) => {
             </div>
             <span className="text-sm text-white/60">{user?.name}</span>
           </div>
+          <IoTrashBinOutline
+            onClick={handleClick}
+            className="text-white/35 transition-colors hover:text-white/60"
+          />
         </div>
       </div>
     </div>

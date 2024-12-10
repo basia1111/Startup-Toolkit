@@ -51,15 +51,23 @@ const Projects = () => {
           <h2 className="text-2xl font-light text-white">Projects</h2>
           <CreateProject updateProjects={updateProjects} />
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {projectsList && projectsList.length > 0 ? (
-            projectsList.map((project, index) => <UserProject key={index} project={project} />)
-          ) : !isLoading ? (
-            <div className="text-base font-light text-white">Add Your first project!</div>
-          ) : (
-            ''
-          )}
-        </div>
+
+        {projectsList && projectsList.length > 0 ? (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {projectsList.map((project, index) => (
+              <UserProject key={index} project={project} setProjectsList={setProjectsList} />
+            ))}
+          </div>
+        ) : !isLoading ? (
+          <div className="text-gray-300 w-full p-4 text-center">
+            <h2 className="text-gray-300 mb-2 text-lg">No Projects Yet</h2>
+            <p className="text-gray-400 text-md font-light">
+              Add your first project to get started!
+            </p>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

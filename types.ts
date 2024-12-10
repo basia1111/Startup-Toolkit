@@ -15,6 +15,7 @@ export type User = {
 };
 
 export type Project = {
+  _id: string;
   id: string;
   title: string;
   description: string;
