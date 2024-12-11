@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import RegisterForm from '@components/AuthForms/RegisterForm';
+import RegisterForm from '@components/authForms/RegisterForm';
 
 const page = () => {
   return (

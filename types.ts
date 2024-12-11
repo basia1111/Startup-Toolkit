@@ -21,4 +21,6 @@ export type Project = {
   description: string;
   author: string;
   cover?: string;
+  status: string;
+  category: string;
 };

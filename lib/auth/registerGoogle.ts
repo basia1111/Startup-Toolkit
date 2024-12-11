@@ -19,7 +19,6 @@ export const registerGoogle = async ({ name, email, image }: GoogleData) => {
     image = image.replaceAll('s96-c', 's192-c');
     const user = new User({ name, email, image, authProvider: 'google' });
     const savedUser = await user.save();
-    console.log('User saved:', savedUser);
     return { ...savedUser.toObject(), id: savedUser._id.toString() };
   } catch (error) {
     console.error('Error during user registration:', error);

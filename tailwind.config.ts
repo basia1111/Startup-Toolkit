@@ -12,7 +12,6 @@ const config: Config = {
         Inter: ['"Inter"', 'sans-serif'],
       },
       colors: {
-        black: '#13131f',
         green: 'rgb(0 185 135)',
         lightGreen: 'rgb(207 255 236)',
         softWhite: '#f9f9f9',

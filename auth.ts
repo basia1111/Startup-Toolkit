@@ -74,7 +74,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           emailVerified: null,
         };
       }
-      console.log(session);
       return session;
     },
   },

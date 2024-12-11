@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import LoginForm from '@components/AuthForms/LoginForm';
-import GoogleButton from '@components/AuthForms/GoogleButton';
+import LoginForm from '@components/authForms/LoginForm';
+import GoogleButton from '@components/authForms/GoogleButton';
 
 const LoginPage = () => {
   return (

@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     console.error('Upload error:', error);
     return NextResponse.json(
       {
-        message: 'Upload failed',
+        message: error instanceof Error ? error.message : 'Unknown error',
         error: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 },

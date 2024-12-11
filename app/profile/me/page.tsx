@@ -1,7 +1,13 @@
 import React from 'react';
 import { auth } from '@auth';
 import { redirect } from 'next/navigation';
-import Profile from '@components/Pages/ProfilePage/Profile';
+import Cover from '@components/user/Cover';
+import ProfileImage from '@components/user/ProfileImage';
+import Username from '@components/user/Username';
+import UserDetails from '@components/user/UserDetails';
+import SocialLinks from '@components/user/SocialLinks';
+import About from '@components/user/About';
+import Projects from '@components/user/Projects';
 
 export default async function ProfilePage() {
   const session = await auth();
@@ -11,14 +17,26 @@ export default async function ProfilePage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-[#1c1c2a] pt-20">
-      <div className="fixed inset-0">
-        <div className="absolute left-1/4 top-[50%] h-[60vh] w-[30vw] rounded-full bg-purple-500/40 blur-[120px]" />
-        <div className="absolute left-1/4 top-[20%] h-[40vh] w-[30vw] rounded-full bg-purple-800/20 blur-[120px]" />
-        <div className="absolute right-1/4 top-[30%] h-[35vh] w-[25vw] rounded-full bg-blue-800/20 blur-[120px]" />
-        <div className="absolute bottom-[20%] left-1/3 h-[45vh] w-[28vw] rounded-full bg-indigo-800/20 blur-[120px]" />
+    <div className="profile-wrapper relative -mt-20 min-h-screen w-full bg-[#0D1117] pt-20">
+      <div className="profile-gradient-bg absolute inset-0 overflow-hidden">
+        <div className="gradient-bg absolute inset-0" />
       </div>
-      <Profile />
+
+      <div className="profile-content-wrapper relative">
+        <Cover />
+        <div className="profile-content relative mx-auto flex max-w-7xl flex-col items-start px-6 pb-16 lg:-mt-[70px]">
+          <div className="profile-header flex flex-col gap-6 lg:w-full lg:flex-row lg:items-end">
+            <ProfileImage />
+            <div>
+              <Username />
+              <UserDetails />
+            </div>
+          </div>
+          <SocialLinks />
+          <About />
+          <Projects />
+        </div>
+      </div>
     </div>
   );
 }

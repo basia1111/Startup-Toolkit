@@ -1,11 +1,11 @@
 import '@styles/globals.css';
 import React from 'react';
 import { ReactNode } from 'react';
-import Header from '@components/Header/Header';
+import Header from '@components/layout/Header/Header';
 import Provider from '@components/Provider';
 import { ModalContextProvider } from '@contexts/ModalContext';
 import { UserContextProvider } from '@contexts/UserContext';
-import Modal from '@components/Modal';
+import Modal from '@components/common/Modal';
 
 export const metadata = {
   title: 'Startup Toolkit',

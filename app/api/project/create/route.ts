@@ -5,6 +5,7 @@ import cloudinary from '@utils/claudinary';
 import { NextRequest, NextResponse } from 'next/server';
 import { unlink, writeFile } from 'fs/promises';
 import { join } from 'path';
+import mongoose from 'mongoose';
 
 export async function POST(request: NextRequest) {
   const session = await auth();
@@ -20,11 +21,21 @@ export async function POST(request: NextRequest) {
   const description = formData.get('description') as string;
   const email = formData.get('email') as string;
   const inputFile = formData.get('cover') as File | null;
+  const status = formData.get('status') as string;
+  const category = formData.get('category') as string;
   const author = session.user.id;
 
-  if (!title || !description) {
+  console.log('Received form data:', {
+    title,
+    description,
+    email,
+    status,
+    category,
+  });
+
+  if (!title || !description || !category || !status) {
     return NextResponse.json(
-      { message: 'Fields "title" and "description" are required.' },
+      { message: 'Fields "title", "description", "category" and "status" are required.' },
       { status: 400 },
     );
   }
@@ -48,6 +59,8 @@ export async function POST(request: NextRequest) {
         email,
         author,
         cover: uploadResponse.secure_url,
+        category,
+        status,
       });
 
       await newProject.save();
@@ -60,9 +73,13 @@ export async function POST(request: NextRequest) {
         description,
         email,
         author,
+        category,
+        status,
       });
-
+      console.log('Schema paths:', mongoose.model('Project').schema.paths);
+      console.log('Attempting to save project:', newProject);
       await newProject.save();
+      console.log('Project saved successfully');
 
       return NextResponse.json({ newProject });
     }
