@@ -2,13 +2,8 @@ import connectDB from '@lib/db';
 import User from '@models/User';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
-  const url = new URL(request.url);
-  const id = url.pathname.split('/').pop();
-
-  if (!id) {
-    return NextResponse.json({ message: 'ID is required' });
-  }
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = await params;
 
   await connectDB();
 
@@ -21,13 +16,14 @@ export async function GET(request: NextRequest) {
       id: user._id.toString(),
       name: user.name,
       email: user.email,
-      image: user.image,
-      professionalTitle: user.professionalTitle,
-      city: user.city,
-      about: user.about,
-      socialMedia: user.socialMedia ? { ...user.socialMedia } : null,
-      coverImage: user.coverImage,
+      image: user?.image,
+      professionalTitle: user?.professionalTitle,
+      city: user?.city,
+      about: user?.about,
+      socialMedia: user?.socialMedia ? { ...user.socialMedia } : null,
+      coverImage: user?.coverImage,
     };
+    console.error(user);
     return NextResponse.json({ user: serializedUser });
   } catch (error) {
     console.error('error fetching user:', error);

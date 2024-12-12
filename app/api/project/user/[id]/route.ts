@@ -1,17 +1,14 @@
-import { NextResponse } from 'next/server';
-import { auth } from '@auth';
+import { NextResponse, NextRequest } from 'next/server';
 import connectDB from '@lib/db';
 import { findUserProjects } from '@lib/user/findUserProjects';
 
-export async function GET() {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-  }
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = await params;
+
   await connectDB();
 
   try {
-    const userProjects = await findUserProjects(session.user.id);
+    const userProjects = await findUserProjects(id);
 
     return NextResponse.json(
       {

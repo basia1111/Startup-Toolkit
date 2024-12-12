@@ -31,9 +31,9 @@ export async function PUT(request: NextRequest) {
         name: name,
         city: city,
         professionalTitle: professionalTitle,
-        'socialmedia.twitter': twitter,
-        'socialmedia.github': github,
-        'socialmedia.linkedIn': linkedIn,
+        'socialMedia.twitter': twitter,
+        'socialMedia.github': github,
+        'socialMedia.linkedIn': linkedIn,
       },
       {
         new: true,

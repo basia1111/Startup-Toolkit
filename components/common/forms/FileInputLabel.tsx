@@ -17,7 +17,7 @@ const FileInputLabel = ({ selectedFile, inputName, className }: FileInputLabelPr
       </div>
       <div className="space-y-1">
         <p className="text-gray-700 text-sm font-medium">
-          {selectedFile ? selectedFile.name : 'Click to upload project cover'}
+          {selectedFile ? selectedFile.name : 'Click to upload file'}
         </p>
         <p className="text-gray-500 text-xs">SVG, PNG, JPG or GIF (max. 2MB)</p>
       </div>

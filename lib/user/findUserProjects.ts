@@ -9,7 +9,9 @@ export const findUserProjects = async (id: string) => {
   await connectDB();
 
   try {
-    const userProjects = await Project.find({ author: id }).lean();
+    const userProjects = await Project.find({ author: id })
+      .populate('author', 'name _id image')
+      .lean();
     return userProjects;
   } catch (error) {
     console.error('Error finding user projects:', error);

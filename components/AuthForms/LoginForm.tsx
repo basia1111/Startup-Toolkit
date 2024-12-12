@@ -12,7 +12,7 @@ const LoginForm = () => {
         const result = await signIn('credentials', {
           email: formData.get('email') as string,
           password: formData.get('password') as string,
-          callbackUrl: '/profile/me',
+          callbackUrl: '/my-profile',
           redirect: false,
         });
 

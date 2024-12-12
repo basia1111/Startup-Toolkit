@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useContext } from 'react';
-import { UserContext } from '@contexts/UserContext';
+import { User } from '@types';
+import React from 'react';
 import { FiMapPin } from 'react-icons/fi';
 
-const UserDetails = () => {
-  const { user } = useContext(UserContext)!;
-
+const UserDetails = ({ user }: { user: User }) => {
   return (
     <div className="text-gray-400 mt-2 flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4">
       <span>{user?.professionalTitle}</span>

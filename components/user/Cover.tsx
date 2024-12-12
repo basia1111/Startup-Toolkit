@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaPaintBrush } from 'react-icons/fa';
 import EditProfileCoverForm from '../forms/EditProfileCoverForm';
-import { UserContext } from '@contexts/UserContext';
 import ModalButton from '../common/buttons/ModalButton';
+import { ProfileComponentProps } from '@types';
 
-const Cover = () => {
-  const { user } = useContext(UserContext)!;
-
+const Cover = ({ user, isOwner }: ProfileComponentProps) => {
   return (
     <div className="relative h-48 w-full overflow-hidden lg:h-64">
       {user?.coverImage && (
@@ -36,10 +34,15 @@ const Cover = () => {
         </svg>
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-transparent to-transparent" />
-      <ModalButton modalContent={<EditProfileCoverForm />} className="absolute right-2 top-2">
-        <FaPaintBrush />
-        <span>Edit Cover</span>
-      </ModalButton>
+      {isOwner && (
+        <ModalButton
+          modalContent={<EditProfileCoverForm />}
+          className="absolute right-2 top-2 px-4 py-2"
+        >
+          <FaPaintBrush />
+          <span>Edit Cover</span>
+        </ModalButton>
+      )}
     </div>
   );
 };

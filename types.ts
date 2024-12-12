@@ -1,12 +1,13 @@
 export type User = {
   id: string;
+  _id?: string;
   name: string;
   email: string;
   image?: string;
   professionalTitle?: string;
   city?: string;
   about?: string;
-  socialmedia?: {
+  socialMedia?: {
     twitter?: string;
     linkedIn?: string;
     github?: string;
@@ -19,8 +20,13 @@ export type Project = {
   id: string;
   title: string;
   description: string;
-  author: string;
+  author: User;
   cover?: string;
   status: string;
   category: string;
+};
+
+export type ProfileComponentProps = {
+  user: User;
+  isOwner: boolean;
 };
