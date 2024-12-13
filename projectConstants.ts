@@ -105,7 +105,7 @@ export const PROJECT_STATUSES = [
   {
     value: 'in_production',
     label: 'In Production',
-    color: '#10B981',
+    color: '#F59E0B',
   },
   {
     value: 'maintenance',
