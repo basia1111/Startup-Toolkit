@@ -6,6 +6,7 @@ import Provider from '@components/Provider';
 import { ModalContextProvider } from '@contexts/ModalContext';
 import { UserContextProvider } from '@contexts/UserContext';
 import Modal from '@components/common/Modal';
+import Footer from '@components/layout/Footer/Footer';
 
 export const metadata = {
   title: 'Startup Toolkit',
@@ -27,6 +28,7 @@ const Root = ({ children }: RootProps) => {
               <main className="app-wrapper relative flex min-h-screen w-full flex-col items-center">
                 <Header />
                 {children}
+                <Footer />
                 <Modal />
               </main>
             </ModalContextProvider>
