@@ -18,7 +18,7 @@ const DefaultProjectCover = () => (
 
 type ProjectCardType = {
   project: Project;
-  setProjectsList: React.Dispatch<React.SetStateAction<Project[] | null>>;
+  setProjectsList?: React.Dispatch<React.SetStateAction<Project[] | null>>;
   isOwner: boolean;
 };
 
@@ -83,7 +83,7 @@ const ProjectCard = ({ project, setProjectsList, isOwner }: ProjectCardType) => 
               </div>
 
               <div className="flex items-center gap-2">
-                {isOwner && (
+                {isOwner && setProjectsList && (
                   <ModalButton
                     modalContent={
                       <DeleteProject setProjectsList={setProjectsList} id={project._id} />
