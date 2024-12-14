@@ -48,7 +48,7 @@ const Footer = () => {
   const techStack = ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'FramerMotion'];
 
   return (
-    <footer className="w-full bg-[#0f151c] pt-16">
+    <footer className="z-40 w-full bg-[#0f151c] pt-16">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-start">
           <div className="space-y-4 md:w-1/4">

@@ -1,4 +1,4 @@
-import NextAuth, { Profile } from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import verifyUser from '@lib/auth/verifyUser';
@@ -39,7 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async redirect({ baseUrl }) {
-      return `${baseUrl}/profile/me`;
+      return `${baseUrl}/my-profile`;
     },
     async jwt({ token, account, profile, trigger, session, user }) {
       if (account?.provider === 'google') {

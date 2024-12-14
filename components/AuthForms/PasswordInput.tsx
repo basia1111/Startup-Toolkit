@@ -5,13 +5,13 @@ const PasswordInput = () => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
 
   return (
-    <div className="mb-4 flex items-center gap-2 rounded-md border border-white/10 bg-black/50 transition-all focus-within:border-white/20 focus-within:bg-black/70 focus-within:ring-2 focus-within:ring-white/10">
+    <div className="text-md flex w-full items-center justify-center rounded-md border border-white/10 bg-[#1C2128]/50 text-white transition-all placeholder:text-white/70 focus:border-white/20 focus:bg-[#1C2128]/80 focus:outline-none focus:ring-2 focus:ring-white/10">
       <input
         type={isVisiblePassword ? 'text' : 'password'}
         name="password"
         id="password"
-        placeholder="password"
         className="text-md w-full rounded-md bg-transparent px-5 py-3 text-white placeholder:text-white/50 focus:border-transparent focus:outline-none focus:ring-0"
+        placeholder="password"
       />
       {isVisiblePassword ? (
         <PiEye

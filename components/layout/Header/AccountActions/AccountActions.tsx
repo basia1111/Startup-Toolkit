@@ -9,7 +9,7 @@ const AccountActions = async () => {
     <div className="w-50 z-50 hidden justify-end font-Inter text-white/90 lg:flex">
       {session?.user?.name ? (
         <div className="flex w-full items-center gap-2 text-right">
-          <a href="/profile/me" className="cursor-pointer">
+          <a href="/my-profile" className="cursor-pointer">
             <img
               src={session.user.image || '/images/avatar.png'}
               alt="profile picture"
@@ -23,7 +23,7 @@ const AccountActions = async () => {
       ) : (
         <>
           <Link
-            className="ml-4 rounded-md border border-white/10 bg-black/30 px-4 py-2 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-black/50"
+            className="flex items-center rounded-lg bg-gradient-to-r from-teal-600 to-emerald-600 px-4 py-2 text-white hover:from-teal-500 hover:to-emerald-500"
             href="/register"
           >
             Sign up

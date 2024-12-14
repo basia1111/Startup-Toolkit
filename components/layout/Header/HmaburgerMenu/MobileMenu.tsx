@@ -95,7 +95,7 @@ const MobileMenu = ({ isMenuOpen, isExiting, setIsMenuOpen, setIsExiting }: Mobi
                 {session?.user?.name ? (
                   <div className="flex items-center gap-4">
                     <Link
-                      href="/profile/me"
+                      href="/my-profile"
                       className="flex items-center gap-4 text-white transition-colors hover:text-purple-300"
                       onClick={handleClick}
                     >

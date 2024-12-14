@@ -12,7 +12,7 @@ const Input = ({ type, name }: InputProps) => {
         name={name}
         id={name}
         placeholder={name}
-        className="text-md w-full rounded-md border border-white/10 bg-black/50 px-5 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/20 focus:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/10"
+        className="text-md w-full rounded-md border border-white/10 bg-[#1C2128]/50 px-5 py-3 text-white transition-all placeholder:text-white/70 focus:border-white/20 focus:bg-[#1C2128]/80 focus:outline-none focus:ring-2 focus:ring-white/10"
       />
     </div>
   );

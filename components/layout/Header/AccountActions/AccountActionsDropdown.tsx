@@ -71,9 +71,9 @@ const AccountActionsDropdown = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute right-2 top-10 flex w-auto flex-col gap-2 rounded-md border border-white/10 bg-black/95 p-4 pr-20 text-left text-white/90 shadow-lg backdrop-blur-md"
+            className="absolute right-2 top-10 flex w-auto flex-col gap-2 rounded-md border border-white/10 bg-[#0f151c]/95 p-4 pr-20 text-left text-white/90 shadow-lg backdrop-blur-md"
           >
-            <Link href="/profile/me" className="transition-colors hover:text-white">
+            <Link href="/my-profile" className="transition-colors hover:text-white">
               Profile
             </Link>
             <p className="cursor-pointer transition-colors hover:text-white" onClick={handleLogout}>

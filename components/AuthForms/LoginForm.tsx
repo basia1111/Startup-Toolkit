@@ -19,7 +19,7 @@ const LoginForm = () => {
         if (result?.error) {
           return 'Invalid credentials';
         } else {
-          window.location.href = '/profile';
+          window.location.href = '/my-profile';
         }
 
         return null;
@@ -46,7 +46,7 @@ const LoginForm = () => {
         <PasswordInput />
         <button
           type="submit"
-          className="group relative flex w-full justify-center rounded-md bg-white/20 px-6 py-3 text-base text-white backdrop-blur-md transition-all hover:bg-white/30"
+          className="w-full rounded-md border border-white/10 bg-black/50 px-6 py-3 text-base text-white backdrop-blur-sm transition-all hover:border-white/20 hover:bg-black/70"
         >
           Sign in
         </button>

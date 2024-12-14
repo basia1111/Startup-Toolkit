@@ -9,11 +9,11 @@ const HomeHero = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0D1117]">
       <div className="absolute inset-0">
-        <div className="animate-slow-spin absolute left-0 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-30">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 blur-[100px]" />
+        <div className="animate-slow-spin absolute left-0 top-0 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 opacity-50">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100 to-emerald-500 blur-[10px]" />
         </div>
-        <div className="animate-slow-spin-reverse absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/2 translate-y-1/2 opacity-30">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 blur-[100px]" />
+        <div className="animate-slow-spin-reverse absolute bottom-0 right-0 h-[500px] w-[500px] translate-x-1/2 translate-y-1/2 opacity-50">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-50 blur-[5px]" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:64px_64px]" />
       </div>

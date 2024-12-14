@@ -51,7 +51,7 @@ const Projects = ({ user, isOwner }: ProfileComponentProps) => {
           </ModalButton>
         )}
       </div>
-      <div className="flex w-full flex-col items-center justify-center rounded-xl border border-white/10 bg-teal-50/10 p-10">
+      <div className="flex w-full flex-col items-center justify-center rounded-xl border border-white/10 bg-[#161B22]/10 p-10">
         {projectsList && projectsList.length > 0 ? (
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             {projectsList.map((project, index) => (
