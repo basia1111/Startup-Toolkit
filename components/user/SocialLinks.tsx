@@ -39,7 +39,7 @@ const SocialLinks = ({ user }: { user: User }) => {
 
       <a
         href={`mailto:${user.email}`}
-        className="group flex items-center gap-2 rounded-md border border-white/10 bg-gradient-to-r from-teal-600 to-emerald-600 px-4 py-2 text-white hover:from-teal-500 hover:to-emerald-500"
+        className="group flex items-center gap-2 rounded-lg border border-white/10 bg-gradient-to-r from-teal-600 to-emerald-600 px-4 py-2 text-white hover:from-teal-500 hover:to-emerald-500"
       >
         <FiMail className="transition-all group-hover:scale-105" />
         Contact

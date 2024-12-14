@@ -20,14 +20,15 @@ const MobileMenu = ({ isMenuOpen, isExiting, setIsMenuOpen, setIsExiting }: Mobi
       setIsMenuOpen(false);
     }, 300);
   };
+
   const handleLogout = async () => {
     await signOut({ callbackUrl: '/' });
   };
 
   const menuWrapperVariants = {
     initial: {
-      height: 0,
       opacity: 0,
+      height: 0,
       clipPath: 'inset(0% 0% 100% 0%)',
       transition: {
         duration: 0.2,
@@ -36,8 +37,8 @@ const MobileMenu = ({ isMenuOpen, isExiting, setIsMenuOpen, setIsExiting }: Mobi
       },
     },
     animate: {
-      height: '100vh',
       opacity: 1,
+      height: '100vh',
       clipPath: 'inset(0% 0 0 0)',
       transition: {
         duration: 0.4,
@@ -45,8 +46,8 @@ const MobileMenu = ({ isMenuOpen, isExiting, setIsMenuOpen, setIsExiting }: Mobi
       },
     },
     exit: {
-      height: 0,
       opacity: 0,
+      height: 0,
       clipPath: 'inset(0% 0% 100% 0%)',
       transition: {
         duration: 0.4,
@@ -65,69 +66,77 @@ const MobileMenu = ({ isMenuOpen, isExiting, setIsMenuOpen, setIsExiting }: Mobi
   return (
     <AnimatePresence>
       {isMenuOpen && (
-        <>
-          <motion.div
-            variants={menuWrapperVariants}
-            initial="initial"
-            animate="animate"
-            exit={isExiting ? 'exit' : ''}
-            className="fixed inset-0 z-40 flex border-white/10 bg-black/95 p-6 backdrop-blur-md"
-          >
-            <motion.ul className="relative flex w-full flex-col gap-8 px-4 pt-32">
-              <motion.li
-                variants={menuLinksVariants}
-                className="text-3xl font-light text-white transition-colors hover:text-purple-300"
-                onClick={handleClick}
-              >
-                <Link href="/">Home</Link>
-              </motion.li>
-              <motion.li
-                variants={menuLinksVariants}
-                className="text-3xl font-light text-white transition-colors hover:text-purple-300"
-                onClick={handleClick}
-              >
-                <Link href="/projects">Projects</Link>
-              </motion.li>
-              <motion.div
-                variants={menuLinksVariants}
-                className="absolute bottom-4 flex w-full flex-col items-center justify-center border pt-6"
-              >
-                {session?.user?.name ? (
-                  <div className="flex items-center gap-4">
-                    <Link
-                      href="/my-profile"
-                      className="flex items-center gap-4 text-white transition-colors hover:text-purple-300"
-                      onClick={handleClick}
-                    >
-                      <img
-                        src={session.user.image || '/images/avatar-placeholder.png'}
-                        alt="profile picture"
-                        width={30}
-                        height={30}
-                        className="h-8 w-8 rounded-full object-cover"
-                      />
-                      <span className="text-lg">{session.user.name}</span>
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="text-white transition-colors hover:text-white"
-                    >
-                      <IoLogOutSharp size={20} />
-                    </button>
-                  </div>
-                ) : (
+        <motion.div
+          variants={menuWrapperVariants}
+          initial="initial"
+          animate="animate"
+          exit={isExiting ? 'exit' : ''}
+          className="fixed inset-0 z-40 flex bg-[#0D1117]/95 backdrop-blur-md"
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute left-0 top-0 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 opacity-20">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 blur-[80px]" />
+            </div>
+            <div className="a absolute bottom-0 right-0 h-[400px] w-[400px] translate-x-1/2 translate-y-1/2 opacity-20">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 blur-[80px]" />
+            </div>
+          </div>
+
+          <motion.ul className="relative flex w-full flex-col gap-8 p-6 pt-32">
+            <motion.li
+              variants={menuLinksVariants}
+              className="text-3xl font-light text-white transition-all duration-300 hover:text-teal-400"
+              onClick={handleClick}
+            >
+              <Link href="/">Home</Link>
+            </motion.li>
+            <motion.li
+              variants={menuLinksVariants}
+              className="text-3xl font-light text-white transition-all duration-300 hover:text-teal-400"
+              onClick={handleClick}
+            >
+              <Link href="/explore">Explore</Link>
+            </motion.li>
+
+            <motion.div
+              variants={menuLinksVariants}
+              className="absolute bottom-8 left-6 right-6 flex flex-col items-center justify-center border-t border-white/10 pt-6"
+            >
+              {session?.user?.name ? (
+                <div className="flex items-center justify-center gap-4">
                   <Link
-                    href="/login"
-                    className="rounded-lg bg-purple-600 px-6 py-2 text-white transition-colors hover:bg-purple-700"
+                    href="/my-profile"
+                    className="flex items-center gap-4 text-white transition-all duration-300 hover:text-teal-400"
                     onClick={handleClick}
                   >
-                    Sign in
+                    <img
+                      src={session.user.image || '/images/avatar-placeholder.png'}
+                      alt="profile picture"
+                      width={30}
+                      height={30}
+                      className="h-8 w-8 rounded-full object-cover ring-2 ring-white/10"
+                    />
+                    <span className="text-lg font-medium">{session.user.name}</span>
                   </Link>
-                )}
-              </motion.div>
-            </motion.ul>
-          </motion.div>
-        </>
+                  <button
+                    onClick={handleLogout}
+                    className="rounded-lg bg-white/5 p-2 text-white ring-1 ring-white/10 transition-all duration-300 hover:bg-white/10 hover:text-teal-400"
+                  >
+                    <IoLogOutSharp size={20} />
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="w-full max-w-xs rounded-lg bg-gradient-to-r from-teal-600 to-emerald-600 px-6 py-2 text-center text-white transition-all duration-300 hover:from-teal-500 hover:to-emerald-500"
+                  onClick={handleClick}
+                >
+                  Sign in
+                </Link>
+              )}
+            </motion.div>
+          </motion.ul>
+        </motion.div>
       )}
     </AnimatePresence>
   );

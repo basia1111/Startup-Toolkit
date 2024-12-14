@@ -44,7 +44,7 @@ const Projects = ({ user, isOwner }: ProfileComponentProps) => {
         {isOwner && (
           <ModalButton
             modalContent={<CreateProjectForm updateProjects={updateProjects} />}
-            className="group rounded-md px-4 py-2"
+            className="group rounded-lg px-4 py-2"
           >
             <FiPlusCircle className="group-hover:scale-105" />
             create project

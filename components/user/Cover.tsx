@@ -37,7 +37,7 @@ const Cover = ({ user, isOwner }: ProfileComponentProps) => {
       {isOwner && (
         <ModalButton
           modalContent={<EditProfileCoverForm />}
-          className="absolute right-2 top-2 px-4 py-2"
+          className="absolute right-2 top-2 rounded-lg px-4 py-2"
         >
           <FaPaintBrush />
           <span>Edit Cover</span>
